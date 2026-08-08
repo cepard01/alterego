@@ -7,7 +7,12 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "declaration": true,
-    "composite": true
-  }
+    "noEmit": true,
+    "types": ["node"],
+    "baseUrl": ".",
+    "paths": {
+      "@alterego/*": ["src/*/index.ts"]
+    }
+  },
+  "include": ["src", "test", "vitest.config.ts"]
 }
