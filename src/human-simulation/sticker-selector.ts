@@ -2,7 +2,7 @@
 // score = emotion_match*w1 + context_match*w2 + relationship_affinity*w3
 //         - recency_penalty
 
-import type { Sticker } from '@whatsapp-ai-agent/data';
+import type { Sticker } from '@alterego/data';
 import { StickerSelectionInput } from './types.js';
 
 interface StickerRepo {

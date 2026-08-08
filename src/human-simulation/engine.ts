@@ -2,7 +2,7 @@
 // engage, and as what kind of person-right-now?" decision (v2 §1). It does
 // not talk to the LLM; its output becomes a Behavior Rule downstream.
 
-import type { EventBus } from '@whatsapp-ai-agent/events';
+import type { EventBus } from '@alterego/events';
 import { DecideInput, ReasoningThought, SimulatedAction, SimulatedActionType } from './types.js';
 import { TimingModel } from './timing-model.js';
 import { StickerSelector } from './sticker-selector.js';

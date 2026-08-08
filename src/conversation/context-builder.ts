@@ -3,9 +3,9 @@
 // relationship -> behavior/emotion -> summary -> recent messages ->
 // retrieved memories -> time/metadata -> current message.
 
-import type { IdentitySnapshot } from '@whatsapp-ai-agent/identity';
-import type { PersonalitySnapshot } from '@whatsapp-ai-agent/personality';
-import type { Memory, Thought, WorldState } from '@whatsapp-ai-agent/data';
+import type { IdentitySnapshot } from '@alterego/identity';
+import type { PersonalitySnapshot } from '@alterego/personality';
+import type { Memory, Thought, WorldState } from '@alterego/data';
 
 export interface RelationshipContext {
   name: string;

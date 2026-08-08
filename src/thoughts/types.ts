@@ -1,6 +1,6 @@
 // Shared types for the Internal Thoughts layer (v2 §3, v3 §7).
 
-import type { Thought } from '@whatsapp-ai-agent/data';
+import type { Thought } from '@alterego/data';
 
 export interface TurnMessage {
   role: 'user' | 'agent';

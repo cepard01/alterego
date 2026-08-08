@@ -1,7 +1,7 @@
 // Cloud API transport — WhatsApp Business Cloud API over HTTP (v1 §3).
 // https://developers.facebook.com/docs/whatsapp/cloud-api
 
-import { MediaKind } from '@whatsapp-ai-agent/events';
+import { MediaKind } from '@alterego/events';
 import { InboundMessage, OutboundMessage, PresenceState, SendResult, TransportAdapter } from '../types.js';
 
 interface CloudApiConfig {

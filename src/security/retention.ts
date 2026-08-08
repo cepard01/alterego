@@ -2,7 +2,7 @@
 // Postgres schema uses ON DELETE CASCADE from users() for user-scoped tables;
 // this service orchestrates the deletion and tracks what was purged.
 
-import { DataService } from '@whatsapp-ai-agent/data';
+import { DataService } from '@alterego/data';
 
 export interface RetentionPolicy {
   /** Retention period per entity family, ms (null = keep forever). */

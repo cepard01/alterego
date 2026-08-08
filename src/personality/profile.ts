@@ -2,7 +2,7 @@
 // HOW the agent talks, not who it is (v1 §7). Changes only via explicit
 // new versions, never silently mid-conversation.
 
-import { Personality } from '@whatsapp-ai-agent/data';
+import { Personality } from '@alterego/data';
 
 export interface PersonalityProfile extends Personality {
   /** 0-1: how upbeat responses default to. */

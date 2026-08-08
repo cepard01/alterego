@@ -1,10 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { ConfigService } from '@whatsapp-ai-agent/config';
-import { InMemoryEventBus } from '@whatsapp-ai-agent/events';
-import { DataService } from '@whatsapp-ai-agent/data';
+import { ConfigService } from '@alterego/config';
+import { InMemoryEventBus } from '@alterego/events';
+import { DataService } from '@alterego/data';
 import { ConversationManager, ConversationPipeline, ContextBuilder, PromptBuilder } from '../src/conversation/index.js';
 import { ConversationStateManager } from '../src/conversation/index.js';
-import type { SimulatedAction } from '@whatsapp-ai-agent/human-simulation';
+import type { SimulatedAction } from '@alterego/human-simulation';
 
 const action: SimulatedAction = {
   type: 'reply',

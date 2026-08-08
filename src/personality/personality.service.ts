@@ -2,7 +2,7 @@
 // Loads the latest stored profile (or the default), exposes snapshots for
 // the context builder, and publishes new versions explicitly (v1 §7).
 
-import { Personality } from '@whatsapp-ai-agent/data';
+import { Personality } from '@alterego/data';
 import { DEFAULT_PERSONALITY, PersonalityProfile, PersonalitySnapshot, toSnapshot } from './profile.js';
 
 /** Structural subset of the data package's PersonalityRepository. */

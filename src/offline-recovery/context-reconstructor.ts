@@ -2,7 +2,7 @@
 // raw messages (short gap) / compressed summary (medium gap) / summary +
 // unanswered questions only (long gap).
 
-import type { Message } from '@whatsapp-ai-agent/data';
+import type { Message } from '@alterego/data';
 import type { FreshnessStrategy } from './freshness-scorer.js';
 
 export type ReconstructedContextType = 'raw' | 'summary' | 'summary_plus_questions';

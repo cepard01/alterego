@@ -2,7 +2,7 @@
 // timeline, inventory, goals, calendar (v3 §1-5). WHO the simulated person
 // is, as opposed to how they behave or feel.
 
-import { CalendarEntry, Goal, IdentityProfile, InventoryItem, TimelineEvent } from '@whatsapp-ai-agent/data';
+import { CalendarEntry, Goal, IdentityProfile, InventoryItem, TimelineEvent } from '@alterego/data';
 
 export interface IdentitySnapshot {
   name: string;

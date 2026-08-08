@@ -2,7 +2,7 @@
 // overrides (v1 §15). Runtime overrides arrive from the admin-dashboard (which
 // persists them in the data package); each applied override emits ConfigChanged.
 
-import { EventBus } from '@whatsapp-ai-agent/events';
+import { EventBus } from '@alterego/events';
 import { AppConfig, AppConfigSchema } from './config.schema.js';
 import { deepMerge, envToConfig, envToFeatureFlags, getPath, Json, setPath } from './merge.js';
 import { defaults } from './defaults.js';

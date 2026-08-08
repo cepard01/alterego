@@ -1,9 +1,9 @@
 // MemoryManager — facade over all memory layers: remember() / recall() /
 // forget() plus contradiction detection (v1 §5, v3 §7).
 
-import { Memory } from '@whatsapp-ai-agent/data';
-import { EventBus } from '@whatsapp-ai-agent/events';
-import { Logger } from '@whatsapp-ai-agent/observability';
+import { Memory } from '@alterego/data';
+import { EventBus } from '@alterego/events';
+import { Logger } from '@alterego/observability';
 import { ConversationMemoryStore, InMemoryConversationMemory } from './conversation-memory.js';
 import { detectContradiction } from './contradiction.js';
 import { WorkingMemory } from './working-memory.js';

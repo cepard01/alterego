@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { InMemoryEventBus } from '@whatsapp-ai-agent/events';
+import { InMemoryEventBus } from '@alterego/events';
 import { AgentRuntime } from '../src/runtime/index.js';
-import type { OutboundMessage, SendResult, TransportAdapter } from '@whatsapp-ai-agent/gateway';
+import type { OutboundMessage, SendResult, TransportAdapter } from '@alterego/gateway';
 
 function makeTransport(): { adapter: TransportAdapter; sent: OutboundMessage[] } {
   const sent: OutboundMessage[] = [];

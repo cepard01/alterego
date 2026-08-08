@@ -1,7 +1,7 @@
 // OpenAI-compatible HTTP adapter — used for OpenAI, OpenRouter and any
 // compatible endpoint. Ollama exposes an OpenAI-compatible API on /v1.
 
-import { ProviderConfig } from '@whatsapp-ai-agent/config';
+import { ProviderConfig } from '@alterego/config';
 import { LLMError, LLMRequest, LLMResponse } from '../types.js';
 import { HttpAdapterDeps, pickModel, ProviderAdapter } from './provider.js';
 

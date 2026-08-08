@@ -1,10 +1,10 @@
 // MessageGateway — normalizes transport events into internal events and
 // executes outbound sends with presence control (v1 §3).
 
-import { AppConfig, ConfigService } from '@whatsapp-ai-agent/config';
-import { EventBus } from '@whatsapp-ai-agent/events';
-import { Logger } from '@whatsapp-ai-agent/observability';
-import { RateLimiter, sanitizeMessageText } from '@whatsapp-ai-agent/security';
+import { AppConfig, ConfigService } from '@alterego/config';
+import { EventBus } from '@alterego/events';
+import { Logger } from '@alterego/observability';
+import { RateLimiter, sanitizeMessageText } from '@alterego/security';
 import { CloudApiAdapter } from './adapters/cloud-api.js';
 import { InboundMessage, OutboundMessage, PresenceState, SendResult, TransportAdapter } from './types.js';
 

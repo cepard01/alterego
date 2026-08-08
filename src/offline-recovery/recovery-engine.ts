@@ -3,9 +3,9 @@
 // recovery response per conversation and staggers execution via the
 // scheduler instead of sending everything at once on boot.
 
-import type { Message, RecoveryPlan } from '@whatsapp-ai-agent/data';
-import type { SchedulerService } from '@whatsapp-ai-agent/scheduler';
-import type { EventBus } from '@whatsapp-ai-agent/events';
+import type { Message, RecoveryPlan } from '@alterego/data';
+import type { SchedulerService } from '@alterego/scheduler';
+import type { EventBus } from '@alterego/events';
 import { BacklogAnalyzer } from './backlog-analyzer.js';
 import { ContextReconstructor, ReconstructedContext } from './context-reconstructor.js';
 import { FreshnessResult, FreshnessScorer } from './freshness-scorer.js';

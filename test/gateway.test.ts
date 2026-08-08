@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
-import { InMemoryEventBus } from '@whatsapp-ai-agent/events';
-import { AppConfig } from '@whatsapp-ai-agent/config';
+import { InMemoryEventBus } from '@alterego/events';
+import { AppConfig } from '@alterego/config';
 import { MessageGateway } from '../src/gateway/index.js';
 import { InboundMessage, OutboundMessage, SendResult, TransportAdapter } from '../src/gateway/types.js';
 

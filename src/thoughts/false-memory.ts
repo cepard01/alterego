@@ -2,8 +2,8 @@
 // entries that are subtly wrong. Used sparingly, always on low-stakes facts
 // (dates/details of non-consequential events), never on consequential facts.
 
-import type { EventBus } from '@whatsapp-ai-agent/events';
-import type { Thought } from '@whatsapp-ai-agent/data';
+import type { EventBus } from '@alterego/events';
+import type { Thought } from '@alterego/data';
 import { FalseMemoryOptions } from './types.js';
 
 interface ThoughtRepo {

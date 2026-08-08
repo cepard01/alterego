@@ -1,5 +1,5 @@
-import { AppConfig } from '@whatsapp-ai-agent/config';
-import { InMemoryEventBus } from '@whatsapp-ai-agent/events';
+import { AppConfig } from '@alterego/config';
+import { InMemoryEventBus } from '@alterego/events';
 import { describe, expect, it, vi } from 'vitest';
 import { IdleTimer, InMemoryJobQueue, SchedulerService } from '../src/scheduler/index.js';
 

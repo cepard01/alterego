@@ -2,11 +2,11 @@
 // Subscribes to MediaReceived, resolves analysis via the LLM router
 // (capability-routed), persists it and emits MediaAnalyzed (v1 §9).
 
-import { MediaKind } from '@whatsapp-ai-agent/events';
-import { EventBus } from '@whatsapp-ai-agent/events';
-import { Logger } from '@whatsapp-ai-agent/observability';
-import { DataService, Media } from '@whatsapp-ai-agent/data';
-import { LLMRequest, LLMRouter } from '@whatsapp-ai-agent/llm';
+import { MediaKind } from '@alterego/events';
+import { EventBus } from '@alterego/events';
+import { Logger } from '@alterego/observability';
+import { DataService, Media } from '@alterego/data';
+import { LLMRequest, LLMRouter } from '@alterego/llm';
 
 export interface MediaAnalysis {
   analysisSummary: string;

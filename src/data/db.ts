@@ -1,9 +1,9 @@
-﻿// DB abstraction â€” every repository talks to this interface; only this file
+// DB abstraction — every repository talks to this interface; only this file
 // knows the Postgres driver. A tiny in-memory implementation exists for tests.
 
 import { Pool, PoolClient } from 'pg';
 import Redis from 'ioredis';
-import { Logger } from '@whatsapp-ai-agent/observability';
+import { Logger } from '@alterego/observability';
 
 export interface QueryResultLike {
   rows: unknown[];
@@ -11,7 +11,7 @@ export interface QueryResultLike {
 }
 
 export interface Db {
-  /** Runs a single query. Never interpolate user input into `text` â€” use $params. */
+  /** Runs a single query. Never interpolate user input into `text` — use $params. */
   query(text: string, params?: unknown[]): Promise<QueryResultLike>;
   /** Runs several statements inside one transaction. */
   transaction<T>(fn: (tx: Tx) => Promise<T>): Promise<T>;

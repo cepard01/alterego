@@ -2,7 +2,7 @@
 // scheduler (v3 §9). Weekly by default; the pass itself decides what (if
 // anything) is worth proposing.
 
-import type { SchedulerService } from '@whatsapp-ai-agent/scheduler';
+import type { SchedulerService } from '@alterego/scheduler';
 import { LONGITUDINAL_EVOLUTION_JOB } from './identity-evolution.js';
 
 export interface SchedulerInput {

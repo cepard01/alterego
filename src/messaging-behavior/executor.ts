@@ -3,8 +3,8 @@
 // produces Reminders for deferred answers and fires them at their trigger
 // time via the scheduler.
 
-import type { EventBus } from '@whatsapp-ai-agent/events';
-import type { SendResult } from '@whatsapp-ai-agent/gateway';
+import type { EventBus } from '@alterego/events';
+import type { SendResult } from '@alterego/gateway';
 import { MessagePlan, PendingReminder, ReminderRepo, ReminderScheduler, Sender } from './types.js';
 
 export const REMINDER_FIRE_JOB = 'reminder.fire';

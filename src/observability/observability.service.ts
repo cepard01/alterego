@@ -1,8 +1,8 @@
 // Observability service — wires logger, metrics, cost tracking and health into
 // a single entry point that auto-subscribes to the event bus (v1 §16).
 
-import { AppConfig, ConfigService, LogLevel } from '@whatsapp-ai-agent/config';
-import { EventBus } from '@whatsapp-ai-agent/events';
+import { AppConfig, ConfigService, LogLevel } from '@alterego/config';
+import { EventBus } from '@alterego/events';
 import { JsonLogger, LogSink, Logger } from './logger.js';
 import { attachPipelineMetrics, messageLifecycleLatency, MetricsRegistry } from './metrics.js';
 import { HealthRegistry } from './health.js';

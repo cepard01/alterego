@@ -2,8 +2,8 @@
 // per-provider/day totals so runaway spend on this research project is
 // visible before it hurts (v1 §16).
 
-import { AppConfig, ProviderConfig } from '@whatsapp-ai-agent/config';
-import { EventBus, TokenUsage } from '@whatsapp-ai-agent/events';
+import { AppConfig, ProviderConfig } from '@alterego/config';
+import { EventBus, TokenUsage } from '@alterego/events';
 
 export interface CostTotals {
   promptTokens: number;

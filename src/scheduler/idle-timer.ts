@@ -1,9 +1,9 @@
 // Idle timers — schedules a close-check per conversation after activity
 // and emits ConversationEnded when a conversation goes idle (v1 §12).
 
-import { AppConfig, ConfigService } from '@whatsapp-ai-agent/config';
-import { EventBus } from '@whatsapp-ai-agent/events';
-import { Logger } from '@whatsapp-ai-agent/observability';
+import { AppConfig, ConfigService } from '@alterego/config';
+import { EventBus } from '@alterego/events';
+import { Logger } from '@alterego/observability';
 import { SchedulerService } from './scheduler.js';
 
 export const IDLE_CHECK_JOB = 'conversation.idle-check';

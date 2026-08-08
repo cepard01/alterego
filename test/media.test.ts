@@ -1,8 +1,8 @@
 import { describe, expect, it, vi } from 'vitest';
-import { InMemoryEventBus } from '@whatsapp-ai-agent/events';
-import { ConfigService } from '@whatsapp-ai-agent/config';
-import { DataService } from '@whatsapp-ai-agent/data';
-import { LLMRouter } from '@whatsapp-ai-agent/llm';
+import { InMemoryEventBus } from '@alterego/events';
+import { ConfigService } from '@alterego/config';
+import { DataService } from '@alterego/data';
+import { LLMRouter } from '@alterego/llm';
 import { MediaProcessor } from '../src/media/index.js';
 import { MediaAnalysis, MediaAnalyzer } from '../src/media/media-processor.js';
 

@@ -1,10 +1,10 @@
-﻿// SocialGraphService â€” relationship graph across users (v2 Â§4). Built
+// SocialGraphService — relationship graph across users (v2 §4). Built
 // incrementally from what users mention; edges are tentative until
 // corroborated by repeated, consistent mentions. Also stores per-contact
-// behavior variance (v2 Â§11).
+// behavior variance (v2 §11).
 
-import type { EventBus } from '@whatsapp-ai-agent/events';
-import type { SocialCluster, SocialGraphEdge, SocialGraphNode } from '@whatsapp-ai-agent/data';
+import type { EventBus } from '@alterego/events';
+import type { SocialCluster, SocialGraphEdge, SocialGraphNode } from '@alterego/data';
 
 interface SocialRepo {
   socialNodes: {
@@ -44,7 +44,7 @@ export class SocialGraphService {
   ) {}
 
   /**
-   * A user mentioned another person (v2 Â§4). Creates the node, then creates a
+   * A user mentioned another person (v2 §4). Creates the node, then creates a
    * tentative edge or reinforces an existing one. Corroboration: a repeated,
    * consistent mention (same edge type) is what moves strength meaningfully.
    */
@@ -92,7 +92,7 @@ export class SocialGraphService {
   }
 
   /**
-   * Social relevance term for memory ranking (v2 Â§4): memories connected to
+   * Social relevance term for memory ranking (v2 §4): memories connected to
    * people mentioned in the current conversation rank higher.
    */
   async socialRelevance(userId: string, mentionedUserIds: string[]): Promise<Map<string, number>> {
@@ -106,7 +106,7 @@ export class SocialGraphService {
     return boost;
   }
 
-  /** Per-contact behavior variance (v2 Â§11): baseline override for this edge. */
+  /** Per-contact behavior variance (v2 §11): baseline override for this edge. */
   async setPerContactVariance(fromUserId: string, toUserId: string, variance: { verbosity?: number; energy?: number }): Promise<void> {
     const existing = await this.repo.socialEdges.find(fromUserId, toUserId);
     if (!existing) return;

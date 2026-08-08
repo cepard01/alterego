@@ -1,7 +1,7 @@
 // Shared types for the Human Messaging Model (v2 §5, §10).
 
-import type { OutboundMessage, SendResult } from '@whatsapp-ai-agent/gateway';
-import type { SimulatedAction } from '@whatsapp-ai-agent/human-simulation';
+import type { OutboundMessage, SendResult } from '@alterego/gateway';
+import type { SimulatedAction } from '@alterego/human-simulation';
 
 export type PlannedMessageKind = 'text' | 'sticker' | 'reaction';
 

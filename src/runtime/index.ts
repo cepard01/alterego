@@ -2,24 +2,24 @@
 // the gateway connection, runs the offline-recovery boot sequence, and
 // starts the scheduler's tick loop. Thin wiring only — no domain logic here.
 
-import { AppConfig, ConfigService } from '@whatsapp-ai-agent/config';
-import { EventBus, InMemoryEventBus, MessageReceivedPayload } from '@whatsapp-ai-agent/events';
-import { DataService } from '@whatsapp-ai-agent/data';
-import { SchedulerService } from '@whatsapp-ai-agent/scheduler';
-import { JsonLogger, Logger } from '@whatsapp-ai-agent/observability';
-import { MessageGateway, TransportAdapter } from '@whatsapp-ai-agent/gateway';
-import { LLMRouter, LLMRequest, LLMResponse } from '@whatsapp-ai-agent/llm';
-import { IdentityService } from '@whatsapp-ai-agent/identity';
-import type { PersonalitySnapshot } from '@whatsapp-ai-agent/personality';
-import { WorldStateService, PsychologyService, CognitiveLoadService } from '@whatsapp-ai-agent/psychology';
-import { ThoughtGenerator } from '@whatsapp-ai-agent/thoughts';
-import { SocialGraphService } from '@whatsapp-ai-agent/social-graph';
-import { HumanSimulationEngine, SimulatedAction, StickerSelector, TimingModel } from '@whatsapp-ai-agent/human-simulation';
-import { ResponsePlanner, ResponseExecutor, Sender } from '@whatsapp-ai-agent/messaging-behavior';
-import { ConversationManager, ConversationStateManager, ContextBuilder, PromptBuilder, ConversationPipeline } from '@whatsapp-ai-agent/conversation';
-import { RecoveryEngine } from '@whatsapp-ai-agent/offline-recovery';
-import { EvaluatorService } from '@whatsapp-ai-agent/evaluation';
-import { IdentityEvolutionService, LongitudinalScheduler } from '@whatsapp-ai-agent/longitudinal';
+import { AppConfig, ConfigService } from '@alterego/config';
+import { EventBus, InMemoryEventBus, MessageReceivedPayload } from '@alterego/events';
+import { DataService } from '@alterego/data';
+import { SchedulerService } from '@alterego/scheduler';
+import { JsonLogger, Logger } from '@alterego/observability';
+import { MessageGateway, TransportAdapter } from '@alterego/gateway';
+import { LLMRouter, LLMRequest, LLMResponse } from '@alterego/llm';
+import { IdentityService } from '@alterego/identity';
+import type { PersonalitySnapshot } from '@alterego/personality';
+import { WorldStateService, PsychologyService, CognitiveLoadService } from '@alterego/psychology';
+import { ThoughtGenerator } from '@alterego/thoughts';
+import { SocialGraphService } from '@alterego/social-graph';
+import { HumanSimulationEngine, SimulatedAction, StickerSelector, TimingModel } from '@alterego/human-simulation';
+import { ResponsePlanner, ResponseExecutor, Sender } from '@alterego/messaging-behavior';
+import { ConversationManager, ConversationStateManager, ContextBuilder, PromptBuilder, ConversationPipeline } from '@alterego/conversation';
+import { RecoveryEngine } from '@alterego/offline-recovery';
+import { EvaluatorService } from '@alterego/evaluation';
+import { IdentityEvolutionService, LongitudinalScheduler } from '@alterego/longitudinal';
 
 type SimulatedActionLike = Pick<SimulatedAction, 'type' | 'timing' | 'confidence' | 'params' | 'reasoning'>;
 

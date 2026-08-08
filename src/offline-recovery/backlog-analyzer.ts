@@ -1,7 +1,7 @@
 // BacklogAnalyzer — every conversation with unread messages accumulated
 // during a downtime gap (v3 §8 step 2).
 
-import type { Message } from '@whatsapp-ai-agent/data';
+import type { Message } from '@alterego/data';
 
 export interface ConversationBacklog {
   conversationId: string;

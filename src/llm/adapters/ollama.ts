@@ -1,6 +1,6 @@
 // Ollama local adapter — OpenAI-compatible endpoint on localhost (v1 §11).
 
-import { ProviderConfig } from '@whatsapp-ai-agent/config';
+import { ProviderConfig } from '@alterego/config';
 import { OpenAiCompatibleAdapter } from './openai-compatible.js';
 import { HttpAdapterDeps } from './provider.js';
 

@@ -1,6 +1,6 @@
 // Circuit breaker per provider — prevents hammering a degraded service (v1 §11).
 
-import { Logger } from '@whatsapp-ai-agent/observability';
+import { Logger } from '@alterego/observability';
 
 export interface CircuitBreakerOptions {
   /** Default threshold used when a provider has no specific config. */

@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import { InMemoryEventBus } from '@whatsapp-ai-agent/events';
+import { InMemoryEventBus } from '@alterego/events';
 import {
   attachPipelineMetrics,
   createMemorySink,

@@ -4,7 +4,7 @@
 // to the stored baseline, so it reverts by default (v2 §11 philosophy on a
 // slower clock).
 
-import type { Thought } from '@whatsapp-ai-agent/data';
+import type { Thought } from '@alterego/data';
 
 export interface InterestBaseline {
   /** Interest keyword, e.g. 'fotografia'. */

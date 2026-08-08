@@ -1,6 +1,6 @@
 // Shared types for the Human Simulation Engine (v2 §1, §6, §7).
 
-import type { Thought, WorldState } from '@whatsapp-ai-agent/data';
+import type { Thought, WorldState } from '@alterego/data';
 
 export type SimulatedActionType =
   | 'reply'

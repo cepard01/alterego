@@ -1,9 +1,9 @@
 // SchedulerService — durable job worker: claims due jobs from the queue,
 // runs registered handlers, applies retry/backoff (v1 §12).
 
-import { ConfigService, AppConfig } from '@whatsapp-ai-agent/config';
-import { EventBus } from '@whatsapp-ai-agent/events';
-import { Logger } from '@whatsapp-ai-agent/observability';
+import { ConfigService, AppConfig } from '@alterego/config';
+import { EventBus } from '@alterego/events';
+import { Logger } from '@alterego/observability';
 import { ClaimedJob, JobContext, JobHandler, JobQueue, SchedulerStats } from './types.js';
 
 export interface SchedulerOptions {

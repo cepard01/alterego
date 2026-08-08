@@ -3,9 +3,9 @@
 // pass (always) plus an optional LLM-judge pass (when a router is provided),
 // and writes an EvaluationReport.
 
-import type { EvaluationReport, Message } from '@whatsapp-ai-agent/data';
-import type { EventBus } from '@whatsapp-ai-agent/events';
-import type { LLMRequest } from '@whatsapp-ai-agent/llm';
+import type { EvaluationReport, Message } from '@alterego/data';
+import type { EventBus } from '@alterego/events';
+import type { LLMRequest } from '@alterego/llm';
 import { HeuristicResult, HeuristicScorer, HUMAN_LIKENESS_WEIGHTS, ReplyTimingExpectation } from './heuristics.js';
 
 export interface EvaluationDataPort {

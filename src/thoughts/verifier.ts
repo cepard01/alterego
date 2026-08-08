@@ -1,8 +1,8 @@
 // ThoughtVerifier — self-reflection on past predictions (v2 §3) plus
 // certainty decay over time (v3 §7). Human memory is not a reliable database.
 
-import type { EventBus } from '@whatsapp-ai-agent/events';
-import type { Thought } from '@whatsapp-ai-agent/data';
+import type { EventBus } from '@alterego/events';
+import type { Thought } from '@alterego/data';
 
 interface ThoughtRepo {
   listByUser(userId: string, limit?: number): Promise<Thought[]>;

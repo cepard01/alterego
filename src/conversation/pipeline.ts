@@ -3,8 +3,8 @@
 // building -> LLM. The v1 Behavior Engine now consumes the SimulatedAction
 // as its primary input instead of deciding independently.
 
-import type { SimulatedAction } from '@whatsapp-ai-agent/human-simulation';
-import type { LLMRequest, LLMResponse } from '@whatsapp-ai-agent/llm';
+import type { SimulatedAction } from '@alterego/human-simulation';
+import type { LLMRequest, LLMResponse } from '@alterego/llm';
 import type { ContextBuilder, ContextInput } from './context-builder.js';
 import type { PromptBuilder, PromptInput } from './prompt-builder.js';
 import type { ConversationStateManager } from './state-manager.js';

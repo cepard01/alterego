@@ -2,7 +2,7 @@
 // lifecycle (v1 §16). One line per event, machine-parseable, PII-free by
 // convention (redact anything sensitive before calling).
 
-import { LogLevel } from '@whatsapp-ai-agent/config';
+import { LogLevel } from '@alterego/config';
 
 export interface LogFields {
   [key: string]: unknown;

@@ -2,8 +2,8 @@
 // Each variable has its own decay/growth function; conversation fatigue
 // resets on ConversationEnded. Emits PsychologyUpdated after each turn.
 
-import type { EventBus } from '@whatsapp-ai-agent/events';
-import type { PsychologyState } from '@whatsapp-ai-agent/data';
+import type { EventBus } from '@alterego/events';
+import type { PsychologyState } from '@alterego/data';
 import { clamp01, PsychologyTurnInput } from './types.js';
 
 interface PsychologyRepo {

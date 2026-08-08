@@ -4,7 +4,7 @@
 // human-simulation's SimulatedAction as its primary input (v2), so the
 // behavior-rules layer is derived from the action.
 
-import type { SimulatedAction, SimulatedActionType } from '@whatsapp-ai-agent/human-simulation';
+import type { SimulatedAction, SimulatedActionType } from '@alterego/human-simulation';
 import type { ContextBundle } from './context-builder.js';
 
 export interface PromptInput {

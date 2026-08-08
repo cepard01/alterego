@@ -1,5 +1,5 @@
-import { InMemoryEventBus } from '@whatsapp-ai-agent/events';
-import { AppConfig } from '@whatsapp-ai-agent/config';
+import { InMemoryEventBus } from '@alterego/events';
+import { AppConfig } from '@alterego/config';
 import { describe, expect, it, vi } from 'vitest';
 import { LLMRouter } from '../src/llm/index.js';
 import { LLMResponse } from '../src/llm/types.js';

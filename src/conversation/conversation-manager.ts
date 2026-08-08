@@ -1,8 +1,8 @@
 // ConversationManager — session lifecycle (active/idle/ended), turn-taking,
 // and durable conversation/message/session persistence (v1 §6).
 
-import type { EventBus, MessageReceivedPayload } from '@whatsapp-ai-agent/events';
-import type { Conversation, Message, Session } from '@whatsapp-ai-agent/data';
+import type { EventBus, MessageReceivedPayload } from '@alterego/events';
+import type { Conversation, Message, Session } from '@alterego/data';
 import { ConversationStateManager } from './state-manager.js';
 
 export interface ConversationDataPort {

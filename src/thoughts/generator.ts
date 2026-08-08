@@ -2,8 +2,8 @@
 // Never on the response-critical path; results are private to the agent and
 // never directly quoted in outbound text.
 
-import type { EventBus } from '@whatsapp-ai-agent/events';
-import type { Thought } from '@whatsapp-ai-agent/data';
+import type { EventBus } from '@alterego/events';
+import type { Thought } from '@alterego/data';
 import { GeneratedThought, LlmCompleter, ThoughtGeneratorOptions, TurnTranscriptInput } from './types.js';
 
 interface ThoughtRepo {

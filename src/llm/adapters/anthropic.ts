@@ -1,6 +1,6 @@
 // Anthropic Messages API adapter (v1 §11).
 
-import { ProviderConfig } from '@whatsapp-ai-agent/config';
+import { ProviderConfig } from '@alterego/config';
 import { LLMError, LLMRequest, LLMResponse } from '../types.js';
 import { HttpAdapterDeps, pickModel, ProviderAdapter } from './provider.js';
 

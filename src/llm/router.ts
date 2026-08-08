@@ -1,9 +1,9 @@
 // LLMRouter — provider-agnostic completion with capability routing,
 // automatic fallback and per-provider circuit breakers (v1 §11).
 
-import { AppConfig, ConfigService, LlmCapability } from '@whatsapp-ai-agent/config';
-import { EventBus, LLMCompletedPayload } from '@whatsapp-ai-agent/events';
-import { Logger } from '@whatsapp-ai-agent/observability';
+import { AppConfig, ConfigService, LlmCapability } from '@alterego/config';
+import { EventBus, LLMCompletedPayload } from '@alterego/events';
+import { Logger } from '@alterego/observability';
 import { pickModel, ProviderAdapter } from './adapters/provider.js';
 import { AnthropicAdapter } from './adapters/anthropic.js';
 import { GoogleAdapter } from './adapters/google.js';

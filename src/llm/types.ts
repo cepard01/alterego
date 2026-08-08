@@ -1,7 +1,7 @@
 // LLM types — canonical request/response shapes (v1 §11).
 // Provider adapters translate between these and their vendor formats.
 
-import { LlmCapability } from '@whatsapp-ai-agent/config';
+import { LlmCapability } from '@alterego/config';
 
 export type { LlmCapability };
 

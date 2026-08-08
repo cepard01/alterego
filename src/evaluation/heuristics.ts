@@ -2,7 +2,7 @@
 // without an LLM so results are testable and stable. The optional LLM-judge
 // pass (EvaluatorService) augments these, never replaces them.
 
-import type { Message } from '@whatsapp-ai-agent/data';
+import type { Message } from '@alterego/data';
 
 export interface ReplyTimingExpectation {
   meanMs: number;

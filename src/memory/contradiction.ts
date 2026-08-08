@@ -3,7 +3,7 @@
 // token overlap: high lexical overlap with a different polarity/value signals
 // a possible contradiction for the thought generator to resolve.
 
-import { Memory } from '@whatsapp-ai-agent/data';
+import { Memory } from '@alterego/data';
 
 const STOPWORDS = new Set(['o', 'a', 'os', 'as', 'de', 'do', 'da', 'dos', 'das', 'em', 'no', 'na', 'nos', 'nas', 'e', 'ou', 'que', 'com', 'para', 'por', 'se', 'não', 'nao']);
 

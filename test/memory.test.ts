@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { InMemoryEventBus } from '@whatsapp-ai-agent/events';
-import { ConfigService } from '@whatsapp-ai-agent/config';
-import { DataService } from '@whatsapp-ai-agent/data';
+import { InMemoryEventBus } from '@alterego/events';
+import { ConfigService } from '@alterego/config';
+import { DataService } from '@alterego/data';
 import { MemoryManager } from '../src/memory/index.js';
 
 function makeManager(): { manager: MemoryManager; data: DataService } {

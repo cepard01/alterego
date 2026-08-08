@@ -2,8 +2,8 @@
 // One state per agent; calendar entries (identity, v3 §5) take priority over
 // probabilistic ticks. The LLM never sets or reads this directly.
 
-import type { EventBus } from '@whatsapp-ai-agent/events';
-import type { WorldState } from '@whatsapp-ai-agent/data';
+import type { EventBus } from '@alterego/events';
+import type { WorldState } from '@alterego/data';
 import { CalendarBridge, CalendarOverride, clamp01, WorldStateTickInput } from './types.js';
 
 interface WorldStateRepo {

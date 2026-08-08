@@ -10,8 +10,8 @@ import type {
   InventoryItem,
   Thought,
   TimelineEvent,
-} from '@whatsapp-ai-agent/data';
-import type { EventBus } from '@whatsapp-ai-agent/events';
+} from '@alterego/data';
+import type { EventBus } from '@alterego/events';
 import { DriftProposal, InterestDriftDetector, InterestBaseline } from './interest-drift.js';
 
 export interface EvolutionDataPort {

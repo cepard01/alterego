@@ -1,7 +1,7 @@
 // Provider adapter interface — every adapter translates the canonical
 // LLMRequest into its vendor's wire format and back (v1 §11).
 
-import { ModelConfig, ProviderConfig } from '@whatsapp-ai-agent/config';
+import { ModelConfig, ProviderConfig } from '@alterego/config';
 import { LLMRequest, LLMResponse } from '../types.js';
 
 export interface ProviderAdapter {

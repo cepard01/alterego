@@ -1,8 +1,8 @@
 // DataService — the single entry point to every repository. One instance per
 // process, created from the config; all SQL stays inside this package.
 
-import { ConfigService } from '@whatsapp-ai-agent/config';
-import { Logger } from '@whatsapp-ai-agent/observability';
+import { ConfigService } from '@alterego/config';
+import { Logger } from '@alterego/observability';
 import { createDb, Db } from './db.js';
 import { UserRepository, RelationshipRepository, InteractionHistoryRepository } from './repositories/users.repo.js';
 import {

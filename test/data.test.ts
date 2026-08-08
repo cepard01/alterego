@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { InMemoryEventBus } from '@whatsapp-ai-agent/events';
-import { ConfigService } from '@whatsapp-ai-agent/config';
+import { InMemoryEventBus } from '@alterego/events';
+import { ConfigService } from '@alterego/config';
 import { DataService, MemoryDb, rankMemory } from '../src/data/index.js';
 import { runMigrations } from '../src/data/migrate.js';
 

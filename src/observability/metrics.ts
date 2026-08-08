@@ -2,7 +2,7 @@
 // derives the pipeline metrics v1 §16 asks for (latency, reply-vs-ignore,
 // messages per conversation) from existing events.
 
-import { AppEvent, EventBus } from '@whatsapp-ai-agent/events';
+import { AppEvent, EventBus } from '@alterego/events';
 
 export interface Counter {
   inc(by?: number): void;
