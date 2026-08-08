@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 import { InMemoryEventBus } from '../src/events/event-bus.js';
 import type { AppEvent, EventBus } from '../src/events/event-bus.js';
+import type { MessageReceivedPayload } from '../src/events/events.js';
 
 describe('InMemoryEventBus', () => {
   it('publishes and delivers events with envelope fields', () => {
@@ -21,7 +22,7 @@ describe('InMemoryEventBus', () => {
     expect(handler).toHaveBeenCalledTimes(1);
     const event: AppEvent = handler.mock.calls[0][0];
     expect(event.type).toBe('MessageReceived');
-    expect(event.payload.conversationId).toBe('c1');
+    expect((event.payload as MessageReceivedPayload).conversationId).toBe('c1');
     expect(event.timestamp).toBeGreaterThan(0);
     expect(event.id).toMatch(/^evt-/);
   });

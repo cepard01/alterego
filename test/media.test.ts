@@ -45,7 +45,7 @@ describe('MediaProcessor', () => {
     });
 
     const analyzed: string[] = [];
-    bus.subscribe('MediaAnalyzed', (event) => analyzed.push(event.payload.analysisSummary));
+    bus.subscribe('MediaAnalyzed', (event) => { analyzed.push(event.payload.analysisSummary); });
 
     await processor.process('m1', 'media-1', 'image');
     const stored = await data.media.findById('media-1');

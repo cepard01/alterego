@@ -42,7 +42,7 @@ describe('MemoryManager', () => {
     const manager = new MemoryManager({ bus, data });
 
     const created: string[] = [];
-    bus.subscribe('MemoryCreated', (event) => created.push(`${event.payload.type}:${event.payload.userId}`));
+    bus.subscribe('MemoryCreated', (event) => { created.push(`${event.payload.type}:${event.payload.userId}`); });
 
     await manager.remember({ userId: 'u1', type: 'preference', content: 'gosta de café sem açúcar' });
     expect(created).toEqual(['preference:u1']);
@@ -58,7 +58,7 @@ describe('MemoryManager', () => {
     const manager = new MemoryManager({ bus, data });
 
     const contradictions: string[] = [];
-    bus.subscribe('MemoryContradiction', (event) => contradictions.push(event.payload.contradictionId));
+    bus.subscribe('MemoryContradiction', (event) => { contradictions.push(event.payload.contradictionId); });
 
     await manager.remember({ userId: 'u1', type: 'fact', content: 'me mudo para São Paulo em junho', confidence: 0.9 });
     await manager.remember({ userId: 'u1', type: 'fact', content: 'minha mudança para São Paulo foi em julho', confidence: 0.9 });

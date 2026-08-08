@@ -18,17 +18,23 @@ function makeConfig(overrides: Partial<AppConfig['llm']> = {}): AppConfig {
         primary: {
           apiKey: 'k1',
           priority: 1,
+          timeoutMs: 30_000,
           breakerThreshold: 2,
           breakerCooldownMs: 10_000,
+          pricing: { inputPer1k: 0, outputPer1k: 0 },
           models: {
-            'model-a': { id: 'model-a', capabilities: ['text'] },
-            'model-vision': { id: 'model-vision', capabilities: ['text', 'vision'] },
+            'model-a': { id: 'model-a', capabilities: ['text'], maxTokens: 512 },
+            'model-vision': { id: 'model-vision', capabilities: ['text', 'vision'], maxTokens: 512 },
           },
         },
         fallback: {
           apiKey: 'k2',
           priority: 2,
-          models: { 'model-b': { id: 'model-b', capabilities: ['text'] } },
+          timeoutMs: 30_000,
+          breakerThreshold: 2,
+          breakerCooldownMs: 10_000,
+          pricing: { inputPer1k: 0, outputPer1k: 0 },
+          models: { 'model-b': { id: 'model-b', capabilities: ['text'], maxTokens: 512 } },
         },
       },
       ...overrides,
@@ -71,7 +77,7 @@ describe('LLMRouter', () => {
       },
     });
     const seen: string[] = [];
-    bus.subscribe('LLMCompleted', (event) => seen.push(`${event.payload.provider}:${event.payload.model}`));
+    bus.subscribe('LLMCompleted', (event) => { seen.push(`${event.payload.provider}:${event.payload.model}`); });
 
     const response = await router.complete({
       messages: [{ role: 'user', content: 'hi' }],

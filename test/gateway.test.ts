@@ -62,7 +62,7 @@ describe('MessageGateway', () => {
     await gateway.connect();
 
     const seen: string[] = [];
-    bus.subscribe('MessageReceived', (event) => seen.push(event.payload.content));
+    bus.subscribe('MessageReceived', (event) => { seen.push(event.payload.content); });
 
     await gateway.handleInbound({ id: '1', text: 'oi tudo bem?' });
     expect(seen).toEqual(['oi tudo bem?']);
@@ -93,7 +93,7 @@ describe('MessageGateway', () => {
     await gateway.connect();
 
     const mediaSeen: string[] = [];
-    bus.subscribe('MediaReceived', (event) => mediaSeen.push(`${event.payload.mediaId}:${event.payload.type}`));
+    bus.subscribe('MediaReceived', (event) => { mediaSeen.push(`${event.payload.mediaId}:${event.payload.type}`); });
 
     transport.ingest = () => ({
       id: 'in-9',
@@ -116,7 +116,7 @@ describe('MessageGateway', () => {
     await gateway.connect();
 
     const sent: string[] = [];
-    bus.subscribe('ResponseSent', (event) => sent.push(event.payload.messageId));
+    bus.subscribe('ResponseSent', (event) => { sent.push(event.payload.messageId); });
 
     const result = await gateway.send({ conversationId: 'c1', userId: 'u1', text: 'resposta' });
     expect(result.messageId).toBe('sent-1');

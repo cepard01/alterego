@@ -3,9 +3,9 @@
 
 export {
   EVENT_TYPES,
-  EventPayloadMap,
 } from './events.js';
 export type {
+  EventPayloadMap,
   AgentBootedPayload,
   BehaviorDecision,
   BehaviorDecidedPayload,

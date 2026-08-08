@@ -11,6 +11,16 @@ export interface PersonalityData {
   create(personality: Omit<Personality, 'id' | 'updatedAt' | 'version'> & { id?: string }): Promise<Personality>;
 }
 
+/**
+ * New personality version. Base fields come from the data entity; the
+ * profile extras (energyBaseline, responseLengthBias, decisionTone,
+ * typoTolerance) are optional and fall back to the current profile.
+ */
+export type PersonalityPublishInput =
+  & Omit<Personality, 'id' | 'updatedAt' | 'version' | 'name'>
+  & { name?: string }
+  & Partial<Pick<PersonalityProfile, 'energyBaseline' | 'responseLengthBias' | 'decisionTone' | 'typoTolerance'>>;
+
 export class PersonalityService {
   private cached: PersonalityProfile | null = null;
 
@@ -32,7 +42,7 @@ export class PersonalityService {
    * Persist a new personality version. Never mutates in place — the new
    * version becomes current only after this call.
    */
-  async publish(profile: Omit<Personality, 'id' | 'updatedAt' | 'version' | 'name'> & { name?: string }): Promise<PersonalityProfile> {
+  async publish(profile: PersonalityPublishInput): Promise<PersonalityProfile> {
     const current = await this.current();
     const stored = await this.data.create({
       ...profile,
@@ -40,6 +50,7 @@ export class PersonalityService {
     });
     const next: PersonalityProfile = {
       ...current,
+      ...profile,
       ...stored,
       id: stored.id,
       name: stored.name,

@@ -37,10 +37,12 @@ describe('DataService repositories (in-memory Db)', () => {
     });
     const conversation = await data.conversations.create({ userId: 'u1' });
     await data.messages.create({
+      id: 'm1',
       conversationId: conversation.id, sender: 'user', content: 'first',
       timestamp: '2026-08-08T10:00:00.000Z',
     });
     await data.messages.create({
+      id: 'm2',
       conversationId: conversation.id, sender: 'agent', content: 'second',
       timestamp: '2026-08-08T10:00:01.000Z',
     });
@@ -62,6 +64,8 @@ describe('DataService repositories (in-memory Db)', () => {
       confidence: 0.9,
       source: 'user_stated',
       verificationStatus: 'unverified',
+      embeddingVector: null,
+      expiresAt: null,
     });
     const memories = await data.memory.listByUser('u1');
     expect(memories).toHaveLength(1);
@@ -92,6 +96,7 @@ describe('DataService repositories (in-memory Db)', () => {
       confidence: 0.5,
       source: 'agent_generated',
       verificationStatus: 'unverified',
+      embeddingVector: null,
       expiresAt: new Date(Date.now() - 1000).toISOString(),
     });
     await data.memory.create({
@@ -102,6 +107,8 @@ describe('DataService repositories (in-memory Db)', () => {
       confidence: 0.9,
       source: 'user_stated',
       verificationStatus: 'unverified',
+      embeddingVector: null,
+      expiresAt: null,
     });
     const deleted = await data.memory.deleteExpired();
     expect(deleted).toBe(1);
@@ -190,6 +197,7 @@ describe('DataService repositories (in-memory Db)', () => {
       category: 'purchase',
       title: 'Save for a motorcycle',
       description: '',
+      status: 'active',
     });
     await data.goals.updateProgress(goal.id, 0.5);
     expect((await data.goals.findById(goal.id))?.progress).toBe(0.5);
@@ -234,7 +242,7 @@ describe('runMigrations', () => {
     const db = new MemoryDb();
     // MemoryDb executes migration SQL as no-ops; this just verifies the runner
     // scans the directory and the files parse.
-    const records = await runMigrations(db, '../../infra/db/migrations');
+    const records = await runMigrations(db, './infra/db/migrations');
     expect(records.length).toBeGreaterThanOrEqual(3);
   });
 });

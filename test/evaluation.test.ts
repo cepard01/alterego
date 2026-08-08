@@ -97,7 +97,7 @@ describe('EvaluatorService', () => {
   it('writes a report with a composite human-likeness score and publishes the event', async () => {
     const { bus, data, evaluator } = makeService();
     const published: unknown[] = [];
-    bus.subscribe('EvaluationReportCreated', (e) => published.push(e.payload));
+    bus.subscribe('EvaluationReportCreated', (e) => { published.push(e.payload); });
 
     const result = await evaluator.evaluate({ conversationId: 'c1', messages: transcript() });
     expect(result.report.humanLikenessScore).toBeGreaterThan(0);

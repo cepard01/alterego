@@ -3,6 +3,7 @@ import { ConfigService } from '@alterego/config';
 import { InMemoryEventBus } from '@alterego/events';
 import { DataService } from '@alterego/data';
 import { CognitiveLoadService, PsychologyService, WorldStateService } from '../src/psychology/index.js';
+import type { CalendarBridge } from '../src/psychology/index.js';
 
 function makeServices() {
   const bus = new InMemoryEventBus();
@@ -11,7 +12,7 @@ function makeServices() {
     quiet: true,
   });
   const data = new DataService(config, undefined, { memoryMode: true });
-  const calendar = { calendarActiveAt: async () => [] };
+  const calendar: CalendarBridge = { calendarActiveAt: async () => [] };
   const worldState = new WorldStateService(bus, data.worldState, calendar);
   const psychology = new PsychologyService(bus, data.psychology);
   const cognitiveLoad = new CognitiveLoadService();

@@ -98,7 +98,7 @@ describe('validate', () => {
 
 describe('ForgetMeService', () => {
   it('cascade-deletes a user and reports counts', async () => {
-    const { createDataService } = await import('./helpers.js');
+    const { createDataService } = await import('./security-helpers.js');
     const data = createDataService();
     await data.users.create({
       id: 'u1',
@@ -109,7 +109,7 @@ describe('ForgetMeService', () => {
       optInStatus: 'opted_in',
     });
     const conversation = await data.conversations.create({ userId: 'u1' });
-    await data.messages.create({ conversationId: conversation.id, sender: 'user', content: 'oi' });
+    await data.messages.create({ id: 'm1', conversationId: conversation.id, sender: 'user', content: 'oi', timestamp: new Date().toISOString() });
     await data.memory.create({
       userId: 'u1',
       type: 'fact',
@@ -117,6 +117,9 @@ describe('ForgetMeService', () => {
       importance: 0.8,
       confidence: 0.9,
       source: 'user_stated',
+      verificationStatus: 'unverified',
+      embeddingVector: null,
+      expiresAt: null,
     });
     await data.reminders.create({ userId: 'u1', triggerAt: new Date().toISOString(), payload: {} });
 

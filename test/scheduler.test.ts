@@ -2,6 +2,7 @@ import { AppConfig } from '@alterego/config';
 import { InMemoryEventBus } from '@alterego/events';
 import { describe, expect, it, vi } from 'vitest';
 import { IdleTimer, InMemoryJobQueue, SchedulerService } from '../src/scheduler/index.js';
+import type { JobContext } from '../src/scheduler/index.js';
 
 function makeConfig(overrides: Partial<AppConfig['scheduler']> = {}): AppConfig {
   return {
@@ -30,7 +31,7 @@ describe('SchedulerService', () => {
       queue,
       tickIntervalMs: 10,
     });
-    const handler = vi.fn(async () => undefined);
+    const handler = vi.fn(async (_payload: Record<string, unknown>, _context: JobContext) => undefined);
     scheduler.register('test.job', handler);
 
     await scheduler.schedule({ type: 'test.job', payload: { n: 1 }, runAt: new Date(Date.now() - 1000).toISOString() });
@@ -151,7 +152,7 @@ describe('IdleTimer', () => {
     idleTimer.start();
 
     const ended: string[] = [];
-    bus.subscribe('ConversationEnded', (event) => ended.push(event.payload.conversationId));
+    bus.subscribe('ConversationEnded', (event) => { ended.push(event.payload.conversationId); });
 
     bus.publish('MessageReceived', {
       conversationId: 'c1',

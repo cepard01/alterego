@@ -39,7 +39,6 @@ describe('PersonalityService', () => {
       emojiFrequency: 0.05,
       vocabularyProfile: { avoid: ['bro'] },
       quirks: ['uses "pois bem"'],
-      energyBaseline: 0.4,
       responseLengthBias: 'elaborate',
       decisionTone: 'cautious',
       typoTolerance: 0.01,

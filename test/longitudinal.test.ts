@@ -47,7 +47,6 @@ async function seedProfile(data: ReturnType<typeof makeData>) {
     skills: [],
     familySummary: '',
     version: 1,
-    lastEvolvedAt: new Date(0).toISOString(),
   });
 }
 

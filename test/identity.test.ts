@@ -64,6 +64,7 @@ describe('IdentityService', () => {
       category: 'purchase',
       title: 'Comprar uma moto',
       description: 'guardar para uma moto usada',
+      status: 'active',
       targetDate: '2027-01-01T00:00:00.000Z',
     });
     await service.updateGoalProgress(goal.id, 0.5);
@@ -85,6 +86,7 @@ describe('IdentityService', () => {
         category: 'vehicle',
         name: 'Yamaha 125',
         description: 'moto usada',
+        acquiredAt: new Date().toISOString(),
         sentiment: 'favorite',
         stillOwned: true,
       },

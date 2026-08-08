@@ -2,7 +2,7 @@
 // knows the Postgres driver. A tiny in-memory implementation exists for tests.
 
 import { Pool, PoolClient } from 'pg';
-import Redis from 'ioredis';
+import { Redis } from 'ioredis';
 import { Logger } from '@alterego/observability';
 
 export interface QueryResultLike {

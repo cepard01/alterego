@@ -28,7 +28,7 @@ describe('ConversationManager', () => {
   it('opens a session and publishes ConversationStarted on first message', async () => {
     const { bus, data } = makeData();
     const started: unknown[] = [];
-    bus.subscribe('ConversationStarted', (e) => started.push(e.payload));
+    bus.subscribe('ConversationStarted', (e) => { started.push(e.payload); });
     const manager = new ConversationManager(bus, {
       conversations: data.conversations,
       sessions: data.sessions,
@@ -57,7 +57,7 @@ describe('ConversationManager', () => {
   it('does not open a second session on a follow-up message', async () => {
     const { bus, data } = makeData();
     const started: unknown[] = [];
-    bus.subscribe('ConversationStarted', (e) => started.push(e.payload));
+    bus.subscribe('ConversationStarted', (e) => { started.push(e.payload); });
     const manager = new ConversationManager(bus, {
       conversations: data.conversations,
       sessions: data.sessions,
@@ -140,7 +140,7 @@ describe('ContextBuilder', () => {
       },
       personality: { name: 'mariana', version: 1, tone: 'casual', humorStyle: 'dry', verbosity: 0.5, emojiFrequency: 0.3, energyBaseline: 0.5, responseLengthBias: 'balanced', decisionTone: 'direct', quirks: [] },
       recentMessages: [{ sender: 'user', content: 'Oi', timestamp: 'x' }],
-      memories: [{ content: 'O gato se chama Biscoito.', importance: 0.8, type: 'factual', createdAt: 'x' }],
+      memories: [{ content: 'O gato se chama Biscoito.', importance: 0.8, type: 'fact', createdAt: 'x' }],
       currentMessage: 'Vamos no cinema?',
       maxTokens: 1000,
     });

@@ -3,6 +3,11 @@ import { AgentRuntime } from '@alterego/runtime';
 async function main(): Promise<void> {
   const memoryMode = process.env.ALTEREGO_MEMORY_MODE === '1';
 
+  if (memoryMode) {
+    process.env.DATABASE_URL ??= 'postgres://localhost:5432/alterego';
+    process.env.REDIS_URL ??= 'redis://localhost:6379';
+  }
+
   const runtime = new AgentRuntime({
     memoryMode,
     agentId: process.env.ALTEREGO_AGENT_ID ?? 'agent-1',
