@@ -29,46 +29,34 @@ Concretely: the v1 `Behavior Engine` (section 8) is **not deleted**. It becomes 
 src/
 ├── ...(everything from v1, unchanged)...
 │
-├── world-state/                  # NEW
+├── psychology/                    # NEW — World State + Psychology + Cognitive Load
 │   ├── world-state.ts
-│   ├── activity-simulator.ts
-│   └── availability-model.ts
-│
-├── psychology/                    # NEW
-│   ├── psychology-state.ts
-│   └── variable-decay.ts
+│   ├── psychology.ts
+│   └── cognitive-load.ts
 │
 ├── thoughts/                      # NEW
-│   ├── thought-generator.ts
-│   ├── thought-store.ts
-│   └── interpretation-layer.ts
+│   ├── generator.ts
+│   ├── verifier.ts
+│   └── false-memory.ts
 │
 ├── social-graph/                  # NEW
-│   ├── graph-store.ts
-│   ├── relationship-edges.ts
-│   └── cluster-detection.ts
+│   └── social-graph.service.ts
 │
 ├── human-simulation/              # NEW — the new brain
-│   ├── human-simulation-engine.ts
-│   ├── action-selector.ts        # text | emoji | sticker | image | voice | silence
-│   ├── timing-model.ts            # replaces v1's simple delay logic
-│   └── variability-model.ts       # controlled inconsistency
-│
-├── stickers/                      # NEW
-│   ├── sticker-metadata.ts
+│   ├── engine.ts
+│   ├── timing-model.ts
 │   └── sticker-selector.ts
 │
 ├── messaging-behavior/            # NEW
-│   ├── typing-simulator.ts        # pause/type/stop/correct
-│   ├── bubble-splitter.ts
-│   └── partial-reply.ts           # reply to only part of a message
+│   ├── planner.ts
+│   └── executor.ts
 │
 ├── evaluation/                    # NEW
-│   ├── behavior-evaluator.ts
-│   └── human-likeness-score.ts
+│   ├── evaluator.ts
+│   └── heuristics.ts
 ```
 
-Nothing in v1's `behavior/`, `personality/`, `memory/`, `context/`, `prompt/`, `llm/` folders is removed. `behavior/reply-decision.ts` changes from *source of truth* to *consumer* of the new engine's output.
+Nothing in v1's `memory/`, `personality/`, `llm/`, `conversation/` folders is removed. The new `human-simulation` engine becomes the layer that produces the *decision* the v1 messaging layer used to compute on its own. Think of v1's response pipeline as being promoted from "decider" to "executor," with a richer decider now feeding it.
 
 ---
 

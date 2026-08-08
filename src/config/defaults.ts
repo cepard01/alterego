@@ -9,9 +9,13 @@ export const defaults: AppConfig = {
   database: {
     url: '',
   },
-
   redis: {
     url: '',
+  },
+
+  data: {
+    mode: 'sqlite',
+    sqlitePath: './alterego.db',
   },
 
   log: {
@@ -68,8 +72,9 @@ export const defaults: AppConfig = {
   },
 
   admin: {
-    enabled: false,
+    enabled: true,
     port: 3001,
+    host: '127.0.0.1',
     token: '',
   },
 

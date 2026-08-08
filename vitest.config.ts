@@ -11,6 +11,7 @@ export default defineConfig({
         find: /^@alterego\/([a-z-]+)$/,
         replacement: path.resolve(here, 'src/$1/index.ts'),
       },
+      { find: 'node:sqlite', replacement: path.resolve(here, 'test/mocks/sqlite.ts') },
     ],
   },
   test: {

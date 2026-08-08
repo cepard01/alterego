@@ -1,6 +1,6 @@
 // Repositories for user-centric v1 entities: User, Relationship, InteractionHistory.
 
-import { Db } from '../db.js';
+import { Db } from '../db.types.js';
 import { InteractionHistory, Relationship, User } from '../types.js';
 import { camelToSnake, newId, nowIso, parseJson, firstRow, toJson } from './base.js';
 

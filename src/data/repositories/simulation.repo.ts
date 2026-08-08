@@ -1,7 +1,7 @@
 // Repositories for v2 simulation entities: WorldState, PsychologyState,
 // Thought, EvaluationReport.
 
-import { Db } from '../db.js';
+import { Db } from '../db.types.js';
 import { EvaluationReport, PsychologyState, Thought, WorldState } from '../types.js';
 import { camelToSnake, newId, nowIso, parseJson, firstRow } from './base.js';
 

@@ -25,36 +25,18 @@ src/
 ├── ...(everything from v1 and v2, unchanged)...
 │
 ├── identity/                      # NEW
-│   ├── identity-profile.ts
-│   ├── life-timeline.ts
-│   ├── inventory.ts
-│   └── goals.ts
-│
-├── calendar/                       # NEW
-│   ├── personal-calendar.ts
-│   └── calendar-world-state-bridge.ts
-│
-├── cognitive-load/                  # NEW
-│   └── cognitive-load-model.ts
-│
-├── memory/
-│   ├── ...(v1 subfolders, unchanged)...
-│   └── confidence/                 # NEW — extends memory, not a new top-level module
-│       ├── confidence-scoring.ts
-│       ├── contradiction-detector.ts
-│       └── false-memory-simulator.ts
+│   └── identity.service.ts
 │
 ├── offline-recovery/                 # NEW
-│   ├── offline-detector.ts
-│   ├── backlog-analyzer.ts
+│   ├── recovery-engine.ts
 │   ├── freshness-scorer.ts
-│   ├── context-reconstructor.ts
-│   └── recovery-response-planner.ts
+│   ├── backlog-analyzer.ts
+│   └── context-reconstructor.ts
 │
 ├── longitudinal/                      # NEW
 │   ├── identity-evolution.ts
 │   ├── interest-drift.ts
-│   └── life-progression-scheduler.ts
+│   └── longitudinal-scheduler.ts
 ```
 
 ---

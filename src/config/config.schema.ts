@@ -48,6 +48,13 @@ export const AppConfigSchema = z.object({
     url: z.string().min(1, 'REDIS_URL is required'),
   }),
 
+  /** Local file-backed storage is the default; Postgres is opt-in. */
+  data: z.object({
+    mode: z.enum(['sqlite', 'postgres', 'memory']).default('sqlite'),
+    /** SQLite database file (mode 'sqlite'). */
+    sqlitePath: z.string().default('./alterego.db'),
+  }),
+
   log: z.object({
     level: LogLevelSchema.default('info'),
     /** Per-module verbosity override, e.g. { "gateway": "debug" }. */
@@ -106,9 +113,11 @@ export const AppConfigSchema = z.object({
   }),
 
   admin: z.object({
-    enabled: z.boolean().default(false),
+    /** The local web panel (chat + inspection). On by default. */
+    enabled: z.boolean().default(true),
     port: z.number().int().positive().default(3001),
-    /** Bearer token required on admin endpoints when enabled. */
+    host: z.string().default('127.0.0.1'),
+    /** Bearer token required on admin endpoints when set. */
     token: z.string().default(''),
   }),
 

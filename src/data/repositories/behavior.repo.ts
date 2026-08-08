@@ -1,7 +1,7 @@
 // Repositories for behavior-related entities: Personality, BehaviorProfile,
 // Sticker, Reminder, TaskQueue.
 
-import { Db } from '../db.js';
+import { Db } from '../db.types.js';
 import { BehaviorProfile, Personality, Reminder, Sticker, TaskQueue } from '../types.js';
 import { camelToSnake, newId, nowIso, parseJson, firstRow } from './base.js';
 

@@ -25,7 +25,7 @@ export class LLMRouter {
   private readonly bus: EventBus;
   private readonly config: Readonly<AppConfig>;
   private readonly logger?: Logger;
-  private readonly adapters: Map<string, ProviderAdapter>;
+  private readonly adapters = new Map<string, ProviderAdapter>();
   private readonly breaker: CircuitBreaker;
   private requestCounter = 0;
 
@@ -44,13 +44,19 @@ export class LLMRouter {
         ]),
       ),
     });
-    this.adapters = new Map();
     if (options.adapters) {
       for (const [name, adapter] of Object.entries(options.adapters)) this.adapters.set(name, adapter);
-      return;
+    } else {
+      this.rebuildAdapters();
     }
+    this.bus.subscribe('ConfigChanged', ({ payload }) => {
+      if (payload.key.startsWith('llm.')) this.rebuildAdapters();
+    });
+  }
+
+  private rebuildAdapters(): void {
+    this.adapters.clear();
     for (const [name, providerConfig] of Object.entries(this.config.llm.providers)) {
-      if (this.adapters.has(name)) continue;
       if (name === 'openai' || name === 'azure' || name === 'together' || name === 'groq') {
         this.adapters.set(name, new OpenAiCompatibleAdapter(name, providerConfig));
       } else if (name === 'anthropic' || name === 'claude') {
@@ -65,6 +71,14 @@ export class LLMRouter {
         this.adapters.set(name, new OpenAiCompatibleAdapter(name, providerConfig));
       }
     }
+    this.breaker.resetProviders(
+      Object.fromEntries(
+        Object.entries(this.config.llm.providers).map(([name, config]) => [
+          name,
+          { threshold: config.breakerThreshold, cooldownMs: config.breakerCooldownMs },
+        ]),
+      ),
+    );
   }
 
   /** Providers in fallback order: preferred first, then by config priority. */

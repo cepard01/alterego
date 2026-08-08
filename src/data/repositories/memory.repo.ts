@@ -2,7 +2,7 @@
 // fields), Knowledge. Memory ranking blends similarity, importance, recency
 // and social relevance per v1 §5 / v2 §4 / v3 §7.
 
-import { Db } from '../db.js';
+import { Db } from '../db.types.js';
 import { Knowledge, Memory } from '../types.js';
 import { camelToSnake, newId, nowIso, parseJson, firstRow } from './base.js';
 

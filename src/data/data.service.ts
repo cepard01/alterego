@@ -3,7 +3,8 @@
 
 import { ConfigService } from '@alterego/config';
 import { Logger } from '@alterego/observability';
-import { createDb, Db } from './db.js';
+import { createDb } from './db.js';
+import { Db, DbMode } from './db.types.js';
 import { UserRepository, RelationshipRepository, InteractionHistoryRepository } from './repositories/users.repo.js';
 import {
   ConversationRepository,
@@ -42,9 +43,14 @@ import {
   MemoryContradictionRepository,
   RecoveryPlanRepository,
 } from './repositories/v3.repo.js';
+import { SettingsRepository } from './repositories/settings.repo.js';
 
 export interface DataServiceOptions {
-  /** Use the in-memory Db (tests, dry runs) instead of Postgres. */
+  /** Storage backend. Defaults to the config's data.mode (sqlite). */
+  mode?: DbMode;
+  /** File path used when mode is 'sqlite'. */
+  sqlitePath?: string;
+  /** @deprecated use `mode: 'memory'` — kept for the existing test suites. */
   memoryMode?: boolean;
 }
 
@@ -80,9 +86,11 @@ export class DataService {
   readonly memoryContradictions: MemoryContradictionRepository;
   readonly recoveryPlans: RecoveryPlanRepository;
   readonly identityEvolutionProposals: IdentityEvolutionProposalRepository;
+  readonly settings: SettingsRepository;
 
   constructor(config: ConfigService, logger?: Logger, options: DataServiceOptions = {}) {
-    this.db = createDb(config.get().database.url, logger, options.memoryMode);
+    const mode = options.mode ?? (options.memoryMode ? 'memory' : config.get().data.mode);
+    this.db = createDb(config.get().database.url, logger, mode, options.sqlitePath ?? config.get().data.sqlitePath);
 
     this.users = new UserRepository(this.db);
     this.relationships = new RelationshipRepository(this.db);
@@ -113,6 +121,7 @@ export class DataService {
     this.memoryContradictions = new MemoryContradictionRepository(this.db);
     this.recoveryPlans = new RecoveryPlanRepository(this.db);
     this.identityEvolutionProposals = new IdentityEvolutionProposalRepository(this.db);
+    this.settings = new SettingsRepository(this.db);
   }
 
   async close(): Promise<void> {

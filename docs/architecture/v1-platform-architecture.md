@@ -78,105 +78,93 @@ Three principles drive every decision in this document:
 ## 2. Folder Structure
 
 ```
-whatsapp-ai-agent/
+alterego/
 ├── src/
-│   ├── gateway/                 # WhatsApp transport adapters
-│   │   ├── providers/
+│   ├── events/                    # Event Bus + event contracts
+│   ├── config/                    # Configuration Manager
+│   ├── observability/             # Logging, metrics, health, token tracking
+│   ├── data/                      # Data access layer (repositories, migrations)
+│   ├── security/                  # Auth, rate limiting, retention
+│   ├── scheduler/                 # Delayed/background jobs, idle timer
+│   ├── llm/                       # LLM Router (provider-agnostic)
+│   │
+│   ├── gateway/                   # WhatsApp transport adapters
+│   │   ├── adapters/
 │   │   │   ├── baileys/
 │   │   │   └── cloud-api/
-│   │   ├── gateway.interface.ts
-│   │   └── message-normalizer.ts
+│   │   └── gateway.ts
 │   │
-│   ├── conversation/             # Conversation state machine
-│   │   ├── conversation-manager.ts
-│   │   ├── conversation-state.ts
-│   │   └── session.ts
+│   ├── media/                     # Media Pipeline
 │   │
-│   ├── memory/                   # All memory layers
-│   │   ├── working-memory/
-│   │   ├── conversation-memory/
-│   │   ├── long-term-memory/
-│   │   ├── facts/
-│   │   ├── relationship-memory/
-│   │   ├── summarizer/
-│   │   ├── retrieval/            # embedding search, ranking
-│   │   └── expiration/
-│   │
-│   ├── behavior/                 # Behavior Engine
-│   │   ├── reply-decision.ts
-│   │   ├── timing-model.ts
-│   │   ├── mood-state.ts
-│   │   └── rules/
+│   ├── memory/                    # All memory layers
+│   │   ├── memory-manager.ts
+│   │   ├── conversation-memory.ts
+│   │   ├── working-memory.ts
+│   │   └── contradiction.ts
 │   │
 │   ├── personality/               # Personality Engine
-│   │   ├── personality-profile.ts
-│   │   ├── style-rules.ts
-│   │   └── presets/
+│   │   ├── profile.ts
+│   │   ├── variability-model.ts
+│   │   └── personality.service.ts
 │   │
-│   ├── context/                  # Context Builder
+│   ├── identity/                  # Identity Engine
+│   │   └── identity.service.ts
+│   │
+│   ├── psychology/                # World State + Psychology
+│   │   ├── world-state.ts
+│   │   ├── psychology.ts
+│   │   └── cognitive-load.ts
+│   │
+│   ├── thoughts/                  # Thought Generator + Verifier
+│   │   ├── generator.ts
+│   │   ├── verifier.ts
+│   │   └── false-memory.ts
+│   │
+│   ├── social-graph/              # Social Graph
+│   │   └── social-graph.service.ts
+│   │
+│   ├── human-simulation/          # Human Simulation Engine
+│   │   ├── engine.ts
+│   │   ├── timing-model.ts
+│   │   └── sticker-selector.ts
+│   │
+│   ├── messaging-behavior/        # Response Planner + Executor
+│   │   ├── planner.ts
+│   │   └── executor.ts
+│   │
+│   ├── conversation/              # Conversation state machine + pipeline
+│   │   ├── conversation-manager.ts
+│   │   ├── state-manager.ts
 │   │   ├── context-builder.ts
-│   │   └── token-budget.ts
+│   │   ├── prompt-builder.ts
+│   │   └── pipeline.ts
 │   │
-│   ├── prompt/                   # Prompt Builder
-│   │   ├── system-prompt.ts
-│   │   ├── dynamic-prompt.ts
-│   │   └── safety-rules.ts
+│   ├── offline-recovery/          # Offline Recovery Engine
+│   │   ├── recovery-engine.ts
+│   │   ├── freshness-scorer.ts
+│   │   ├── backlog-analyzer.ts
+│   │   └── context-reconstructor.ts
 │   │
-│   ├── llm/                      # LLM Router (provider-agnostic)
-│   │   ├── llm-router.interface.ts
-│   │   ├── providers/
-│   │   │   ├── openai/
-│   │   │   ├── anthropic/
-│   │   │   ├── google/
-│   │   │   ├── openrouter/
-│   │   │   └── local/
-│   │   └── fallback-strategy.ts
+│   ├── longitudinal/              # Identity Evolution + Interest Drift
+│   │   ├── identity-evolution.ts
+│   │   ├── interest-drift.ts
+│   │   └── longitudinal-scheduler.ts
 │   │
-│   ├── media/                    # Media Pipeline
-│   │   ├── image/
-│   │   ├── audio/
-│   │   ├── video/
-│   │   ├── document/
-│   │   └── sticker/
+│   ├── evaluation/                # Evaluator + Heuristic Scorer
+│   │   ├── evaluator.ts
+│   │   └── heuristics.ts
 │   │
-│   ├── scheduler/                # Delayed/background jobs
-│   │   ├── job-queue.ts
-│   │   ├── cooldowns.ts
-│   │   └── recurring-jobs.ts
-│   │
-│   ├── events/                   # Event Bus + event contracts
-│   │   ├── event-bus.ts
-│   │   └── events/
-│   │
-│   ├── data/                     # Data access layer (repositories)
-│   │   ├── repositories/
-│   │   └── migrations/
-│   │
-│   ├── config/                   # Configuration Manager
-│   │   ├── config.schema.ts
-│   │   └── feature-flags.ts
-│   │
-│   ├── observability/            # Logging, metrics, tracing
-│   │   ├── logger.ts
-│   │   ├── metrics.ts
-│   │   └── tracing.ts
-│   │
-│   ├── security/                 # Auth, encryption, validation
-│   │
-│   └── admin/                    # Admin panel API (internal)
+│   └── dashboard/                 # Admin panel UI (internal)
 │
-├── apps/
-│   └── admin-dashboard/          # Separate frontend app (optional)
-│
+├── test/                          # One test file per module
 ├── infra/
-│   ├── docker/
-│   └── terraform/ (or IaC of choice)
-│
-├── tests/
+│   ├── db/migrations/             # SQL migrations, applied in order
+│   └── docker/
 └── docs/
+    └── architecture/              # v1, v2, v3 — the source of truth
 ```
 
-**Rationale for the split:** each top-level folder under `src/` maps 1:1 to a bounded context in section 3. This is deliberate — when the project scales to multiple agents or is split into services, each folder becomes a plausible service boundary without a rewrite. `providers/` subfolders isolate vendor SDKs so a provider outage or SDK breaking change never touches core logic.
+**Rationale for the shape:** every arrow is an event, not a function call. The Conversation Manager doesn't call the Behavior Engine directly — it publishes `MessageReceived`, and the Behavior Engine subscribes. This means you can add a new subscriber (e.g., a "Safety Auditor" module) without touching existing code, and you can replay events for debugging.
 
 ---
 
@@ -186,23 +174,19 @@ whatsapp-ai-agent/
 |---|---|---|
 | **Message Gateway** | Translates WhatsApp transport events (Baileys sockets, Cloud API webhooks) into internal `MessageReceived`/`MediaReceived` events, and internal `SendMessage` commands back into transport calls. | Event Bus |
 | **Conversation Manager** | Owns conversation state (active/idle/ended), turn-taking, and session boundaries. | Event Bus, Data layer |
-| **Memory Manager** | Facade over all memory layers (section 5). Single entry point: `remember()`, `recall()`, `forget()`. | Data layer, Embeddings provider |
-| **Behavior Engine** | Decides *whether*, *when*, and *how* to respond (section 8). | Memory Manager, Personality Manager, Emotion State |
-| **Personality Manager** | Holds the static + evolving personality profile (section 7). | Data layer |
-| **Profile Manager** | Manages the *user's* profile (not the agent's) — name, preferences, relationship metadata. | Data layer |
-| **Context Builder** | Assembles everything the LLM needs into a bounded, token-budgeted payload (section 6). | Memory Manager, Personality Manager, Conversation Manager |
-| **Conversation State Manager** | Tracks fine-grained turn state: who spoke last, open questions, topic stack. | Conversation Manager |
-| **Emotion State** | A lightweight, decaying mood vector for the agent (e.g., energy, warmth, patience) that biases the Behavior Engine and Prompt Builder. | Behavior Engine |
-| **Relationship Manager** | Tracks the evolving human-agent relationship: familiarity level, inside jokes, trust score, conversation frequency. | Memory Manager |
-| **Prompt Builder** | Compiles system prompt + dynamic context + safety rules into the final LLM payload. | Context Builder |
-| **LLM Router** | Provider-agnostic call layer with fallback/retry (section 11). | Prompt Builder |
-| **Response Generator** | Post-processes LLM output: splits into multiple WhatsApp bubbles, paces sends, injects typing indicators. | LLM Router, Behavior Engine |
+| **Memory Manager** | Facade over all memory layers (section 5). Single entry point: `remember()`, `recall()`, `forget()`. | Data layer |
+| **Human Simulation Engine** | Produces the behavioral decision: whether, when, and how to respond (v2 ch. 1). | Memory, Personality, Psychology, Social Graph |
+| **Personality Service** | Holds the static + evolving personality profile (section 7). | Data layer |
+| **Social Graph Service** | Tracks the evolving human-agent relationship: familiarity level, inside jokes, trust score, conversation frequency. | Data layer |
+| **Context Builder** | Assembles everything the LLM needs into a bounded, token-budgeted payload (section 6). | Memory, Personality, Conversation |
+| **LLM Router** | Provider-agnostic call layer with fallback/retry (section 11). | Context Builder |
+| **Response Planner / Executor** | Post-processes LLM output: splits into multiple bubbles, paces sends, injects typing indicators. | LLM Router, Human Simulation |
 | **Media Processor** | Handles inbound/outbound media (section 9). | LLM Router (vision/audio models) |
 | **Scheduler** | Cron-like and delayed-job engine (section 12). | Event Bus |
 | **Event Bus** | Central pub/sub. Everything communicates through it. | — |
 | **Configuration Manager** | Central typed config + feature flags (section 15). | — |
-| **Logging / Analytics** | Structured logs, metrics, dashboards (section 16). | Event Bus |
-| **Admin Panel** | Internal API/UI for inspecting conversations, memory, and tuning behavior live. | Data layer, Config |
+| **Observability** | Structured logs, metrics, health, token tracking (section 16). | Event Bus |
+| **Dashboard** | Internal UI for inspecting conversations, memory, and tuning behavior live. | Data layer, Config |
 
 ---
 

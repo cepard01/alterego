@@ -2,7 +2,7 @@
 // (v1 §4/§14, v2 & v3 additions). No other package writes raw SQL.
 
 export { createDb, createRedis, MemoryDb, PostgresDb } from './db.js';
-export type { Db, QueryResultLike, Tx } from './db.js';
+export type { Db, QueryResultLike, Tx } from './db.types.js';
 export { runMigrations } from './migrate.js';
 export type { MigrationRecord } from './migrate.js';
 export { DataService } from './data.service.js';

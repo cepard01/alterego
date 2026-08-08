@@ -1,7 +1,7 @@
 // Repositories for conversation-related v1 entities: Conversation, Message,
 // Session, Media.
 
-import { Db } from '../db.js';
+import { Db } from '../db.types.js';
 import { Conversation, Media, Message, Session } from '../types.js';
 import { camelToSnake, countValue, newId, nowIso, firstRow } from './base.js';
 

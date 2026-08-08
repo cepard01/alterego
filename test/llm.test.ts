@@ -45,7 +45,8 @@ function makeConfig(overrides: Partial<AppConfig['llm']> = {}): AppConfig {
     scheduler: { tickIntervalMs: 60_000, idleConversationMs: 60_000 },
     media: { enabled: true, maxOutboundBytes: 16_000_000 },
     whatsapp: { provider: 'baileys', sessionPath: './x', cloudApiPhoneNumberId: '', cloudApiToken: '', cloudApiWebhookSecret: '' },
-    admin: { enabled: false, port: 3001, token: '' },
+    admin: { enabled: false, port: 3001, host: '127.0.0.1', token: '' },
+    data: { mode: 'memory', sqlitePath: '' },
     evaluation: { enabled: true },
   };
 }

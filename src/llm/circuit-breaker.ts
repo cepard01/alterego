@@ -71,6 +71,12 @@ export class CircuitBreaker {
     this.states.clear();
   }
 
+  /** Replace per-provider thresholds after config reload. */
+  resetProviders(providers: Record<string, { threshold: number; cooldownMs: number }>): void {
+    this.options.providers = providers;
+    this.states.clear();
+  }
+
   failures(provider: string): number {
     return this.states.get(provider)?.consecutiveFailures ?? 0;
   }

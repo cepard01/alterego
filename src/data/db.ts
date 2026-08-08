@@ -4,23 +4,8 @@
 import { Pool, PoolClient } from 'pg';
 import { Redis } from 'ioredis';
 import { Logger } from '@alterego/observability';
-
-export interface QueryResultLike {
-  rows: unknown[];
-  rowCount: number | null;
-}
-
-export interface Db {
-  /** Runs a single query. Never interpolate user input into `text` — use $params. */
-  query(text: string, params?: unknown[]): Promise<QueryResultLike>;
-  /** Runs several statements inside one transaction. */
-  transaction<T>(fn: (tx: Tx) => Promise<T>): Promise<T>;
-  close(): Promise<void>;
-}
-
-export interface Tx {
-  query(text: string, params?: unknown[]): Promise<QueryResultLike>;
-}
+import { Db, DbMode, QueryResultLike, Tx } from './db.types.js';
+import { SqliteDb } from './db-sqlite.js';
 
 /** Postgres-backed Db using a pg Pool. */
 export class PostgresDb implements Db {
@@ -313,9 +298,10 @@ for (const assignment of setMatch[1].split(',')) {
   }
 }
 
-/** Creates a Postgres-backed Db from a connection string, or MemoryDb for tests. */
-export function createDb(connectionString: string, logger?: Logger, memoryMode = false): Db {
-  return memoryMode ? new MemoryDb(logger) : new PostgresDb(connectionString, logger);
+/** Creates a Db from a connection string and mode: Postgres, in-memory (tests) or SQLite (local mode). */
+export function createDb(connectionString: string, logger?: Logger, mode: DbMode = 'postgres', sqlitePath = './alterego.db'): Db {
+  if (mode === 'sqlite') return new SqliteDb(sqlitePath, logger);
+  return mode === 'memory' ? new MemoryDb(logger) : new PostgresDb(connectionString, logger);
 }
 
 /** Redis connection shared by packages that need low-latency state (conversation memory). */

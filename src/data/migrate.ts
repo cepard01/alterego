@@ -4,7 +4,7 @@
 
 import { readdir, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { Db } from './db.js';
+import { Db } from './db.types.js';
 
 export interface MigrationRecord {
   version: string;

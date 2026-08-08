@@ -1,7 +1,7 @@
 // Repositories for v3 identity entities: IdentityProfile, TimelineEvent,
 // InventoryItem, Goal, CalendarEntry.
 
-import { Db } from '../db.js';
+import { Db } from '../db.types.js';
 import { CalendarEntry, Goal, IdentityProfile, InventoryItem, TimelineEvent } from '../types.js';
 import { camelToSnake, newId, nowIso, parseJson, firstRow } from './base.js';
 
