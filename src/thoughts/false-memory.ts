@@ -43,9 +43,19 @@ export class FalseMemorySimulator {
     if (candidates.length === 0) return undefined;
 
     const seed = candidates[Math.floor(Math.random() * candidates.length)];
-    const alteration = SUBTLE_ALTERATIONS[Math.floor(Math.random() * SUBTLE_ALTERATIONS.length)];
-    const altered = alteration(seed.content);
-    if (altered === seed.content) return undefined;
+    // Pick an alteration that actually changes the seed (e.g. a time-shift
+    // rule can't apply to a memory with no time in it). Bounded retry — the
+    // roll is a miss when no subtle alteration matches.
+    const order = [...SUBTLE_ALTERATIONS].sort(() => Math.random() - 0.5);
+    let altered: string | undefined;
+    for (const rule of order) {
+      const next = rule(seed.content);
+      if (next !== seed.content) {
+        altered = next;
+        break;
+      }
+    }
+    if (altered === undefined) return undefined;
 
     const created = await this.repo.create({
       userId,
