@@ -19,6 +19,6 @@ replacing anything:
   the whole set of documents). Also adds Cognitive Load, Memory
   Confidence, and a governed mechanism for long-horizon change.
 
-Each package's `AGENTS.md` under `packages/*` and `apps/*` cites exactly
-which section(s) of which document it implements — start there, then go
-read the cited section in full.
+The root `AGENTS.md` and each module's header comment cite which
+section(s) of which document they implement — start there, then go read
+the cited section in full.
