@@ -1,0 +1,14 @@
+{
+  "name": "whatsapp-ai-agent",
+  "version": "0.0.1",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "dev": "pnpm --filter @whatsapp-ai-agent/agent-runtime dev"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "@whatsapp-ai-agent/media",
+  "version": "0.0.1",
+  "private": true,
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@whatsapp-ai-agent/config": "workspace:*",
+    "@whatsapp-ai-agent/data": "workspace:*",
+    "@whatsapp-ai-agent/events": "workspace:*",
+    "@whatsapp-ai-agent/llm": "workspace:*",
+    "@whatsapp-ai-agent/observability": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.5.0",
+    "vitest": "^2.0.0"
+  }
+}
