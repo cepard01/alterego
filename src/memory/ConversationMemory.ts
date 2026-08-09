@@ -1,6 +1,5 @@
 // Conversation memory — the last N raw messages plus the current topic stack
-// for a conversation. Backed by Redis in production; the in-memory store is
-// the default for tests and single-process dev (v1 §5).
+// for a conversation. In-memory store for tests and single-process dev (v1 §5).
 
 export interface ConversationMemoryStore {
   getRecent(conversationId: string, limit: number): Promise<Array<{ role: 'user' | 'agent'; content: string; timestamp: string }>>;

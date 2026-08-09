@@ -9,7 +9,6 @@ function makeConfig(overrides: Partial<AppConfig['llm']> = {}): AppConfig {
   return {
     env: 'test',
     database: { url: 'postgres://localhost/test' },
-    redis: { url: 'redis://localhost:6379' },
     log: { level: 'error', perModule: {} },
     llm: {
       defaultProvider: 'primary',

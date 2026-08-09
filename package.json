@@ -16,7 +16,6 @@
     "@mikro-orm/postgresql": "^7.1.11",
     "@mikro-orm/sqlite": "^7.1.11",
     "better-sqlite3": "^13.0.3",
-    "ioredis": "^5.4.0",
     "mikro-orm": "^7.1.11",
     "pg": "^8.12.0",
     "zod": "^3.23.0"

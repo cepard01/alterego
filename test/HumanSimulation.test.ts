@@ -26,7 +26,7 @@ function makeInput(overrides: Partial<DecideInput> = {}): DecideInput {
 
 function makeEngine(bus = new InMemoryEventBus(), rng: () => number = () => 0.5) {
   const config = new ConfigService(bus, {
-    env: { DATABASE_URL: 'postgres://localhost:5432/test', REDIS_URL: 'redis://localhost:6379' },
+    env: { DATABASE_URL: 'postgres://localhost:5432/test' },
     quiet: true,
   });
   const data = new DataService(config, undefined, { memoryMode: true });
@@ -86,7 +86,7 @@ describe('HumanSimulationEngine', () => {
   it('can pick a sticker when one matches the context', async () => {
     const bus = new InMemoryEventBus();
     const config = new ConfigService(bus, {
-      env: { DATABASE_URL: 'postgres://localhost:5432/test', REDIS_URL: 'redis://localhost:6379' },
+      env: { DATABASE_URL: 'postgres://localhost:5432/test' },
       quiet: true,
     });
     const data = new DataService(config, undefined, { memoryMode: true });
@@ -148,7 +148,7 @@ describe('StickerSelector', () => {
   it('picks the best matching sticker and avoids the last-used one', async () => {
     const bus = new InMemoryEventBus();
     const config = new ConfigService(bus, {
-      env: { DATABASE_URL: 'postgres://localhost:5432/test', REDIS_URL: 'redis://localhost:6379' },
+      env: { DATABASE_URL: 'postgres://localhost:5432/test' },
       quiet: true,
     });
     const data = new DataService(config, undefined, { memoryMode: true });
@@ -170,7 +170,7 @@ describe('StickerSelector', () => {
   it('respects preferred contact affinity', async () => {
     const bus = new InMemoryEventBus();
     const config = new ConfigService(bus, {
-      env: { DATABASE_URL: 'postgres://localhost:5432/test', REDIS_URL: 'redis://localhost:6379' },
+      env: { DATABASE_URL: 'postgres://localhost:5432/test' },
       quiet: true,
     });
     const data = new DataService(config, undefined, { memoryMode: true });

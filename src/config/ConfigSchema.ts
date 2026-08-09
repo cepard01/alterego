@@ -44,10 +44,6 @@ export const AppConfigSchema = z.object({
     url: z.string().min(1, 'DATABASE_URL is required'),
   }),
 
-  redis: z.object({
-    url: z.string().min(1, 'REDIS_URL is required'),
-  }),
-
   /** Local file-backed storage is the default; Postgres is opt-in. */
   data: z.object({
     mode: z.enum(['sqlite', 'postgres', 'memory']).default('sqlite'),

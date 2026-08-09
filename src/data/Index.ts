@@ -1,7 +1,7 @@
 // Data access layer — repositories + migrations for every persisted entity
 // (v1 §4/§14, v2 & v3 additions). No other package writes raw SQL.
 
-export { createDb, createMikroDb, createRedis, MemoryDb, PostgresDb, MikroOrmDbContext } from './Db.js';
+export { createDb, createMikroDb, MemoryDb, PostgresDb, MikroOrmDbContext } from './Db.js';
 export type { Db, QueryResultLike, Tx } from './DbTypes.js';
 export { runMigrations } from './Migrate.js';
 export type { MigrationRecord } from './Migrate.js';

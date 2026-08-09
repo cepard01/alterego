@@ -24,7 +24,7 @@ cp .env.example .env
 # 3. Boot in-memory (zero external dependencies)
 npm run dev:memory
 
-# 4. Or boot against Postgres + Redis
+# 4. Or boot against Postgres
 npm run dev
 ```
 
@@ -34,7 +34,7 @@ npm run dev
 | `npm test` | Full Vitest suite — 171 tests, no DB needed |
 | `npm run test:watch` | Watch mode with HMR |
 | `npm run dev:memory` | SQLite in-memory runtime — zero external dependencies |
-| `npm run dev` | Runtime against Postgres + Redis |
+| `npm run dev` | Runtime against Postgres |
 
 ---
 
@@ -113,7 +113,6 @@ src/
 | Node.js | >= 20 | Runtime |
 | npm | >= 9 | Package manager |
 | PostgreSQL | >= 14 | Primary database (optional for `dev:memory`) |
-| Redis | >= 7 | Cache and queues (optional for `dev:memory`) |
 
 > **Pro tip**: Use `npm run dev:memory` for instant startup — it runs on SQLite in-memory with no external services required.
 
@@ -124,7 +123,6 @@ src/
 ```env
 # Database (Postgres in production, SQLite in dev:memory)
 DATABASE_URL=postgres://localhost:5432/alterego
-REDIS_URL=redis://localhost:6379
 
 # At least one LLM provider key
 OPENAI_API_KEY=sk-...

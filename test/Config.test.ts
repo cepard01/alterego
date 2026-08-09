@@ -8,7 +8,6 @@ function makeBus() {
 
 const baseEnv: NodeJS.ProcessEnv = {
   DATABASE_URL: 'postgres://localhost:5432/test',
-  REDIS_URL: 'redis://localhost:6379',
 };
 
 describe('ConfigService', () => {

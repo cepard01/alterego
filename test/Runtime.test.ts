@@ -35,7 +35,6 @@ function makeTransport(): { adapter: TransportAdapter; sent: OutboundMessage[] }
 
 const TEST_ENV = {
   DATABASE_URL: 'postgres://fake:fake@localhost:5432/fake',
-  REDIS_URL: 'redis://localhost:6379',
 };
 
 async function waitFor(condition: () => boolean | Promise<boolean>, timeoutMs = 5000): Promise<void> {

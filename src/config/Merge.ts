@@ -52,7 +52,6 @@ export function envToConfig(env: NodeJS.ProcessEnv): Json {
 
   if (env.NODE_ENV) put('env', env.NODE_ENV);
   if (env.DATABASE_URL) put('database.url', env.DATABASE_URL);
-  if (env.REDIS_URL) put('redis.url', env.REDIS_URL);
   if (env.LOG_LEVEL) put('log.level', env.LOG_LEVEL);
 
   if (env.OPENAI_API_KEY) put('llm.providers.openai.apiKey', env.OPENAI_API_KEY);

@@ -8,7 +8,6 @@ function makeConfig(): AppConfig {
   return {
     env: 'test',
     database: { url: 'postgres://localhost/test' },
-    redis: { url: 'redis://localhost:6379' },
     log: { level: 'error', perModule: {} },
     llm: { defaultProvider: 'openai', defaultModel: 'gpt-4o-mini', providers: {} },
     featureFlags: {},

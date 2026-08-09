@@ -25,7 +25,7 @@ function makeThought(agentId: string, content: string, day: string): Thought {
 function makeData() {
   const bus = new InMemoryEventBus();
   const config = new ConfigService(bus, {
-    env: { DATABASE_URL: 'postgres://localhost:5432/test', REDIS_URL: 'redis://localhost:6379' },
+    env: { DATABASE_URL: 'postgres://localhost:5432/test' },
     quiet: true,
   });
   return new DataService(config, undefined, { memoryMode: true });

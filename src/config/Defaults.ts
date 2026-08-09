@@ -9,9 +9,6 @@ export const defaults: AppConfig = {
   database: {
     url: '',
   },
-  redis: {
-    url: '',
-  },
 
   data: {
     mode: 'sqlite',

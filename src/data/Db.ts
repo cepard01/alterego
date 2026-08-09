@@ -2,7 +2,6 @@
 // knows the Postgres driver. A tiny in-memory implementation exists for tests.
 
 import { Pool, PoolClient } from 'pg';
-import { Redis } from 'ioredis';
 import { Logger } from '@alterego/observability';
 import { Db, DbMode, QueryResultLike, Tx } from './DbTypes.js';
 import { SqliteDb } from './DbSqlite.js';
@@ -311,9 +310,5 @@ export function createMikroDb(sqlitePath = './alterego.db', logger?: Logger): Mi
   return new MikroOrmDbContext(sqlitePath, logger);
 }
 
-/** Redis connection shared by packages that need low-latency state (conversation memory). */
-export function createRedis(url: string): Redis {
-  return new Redis(url, { lazyConnect: false, maxRetriesPerRequest: 2 });
-}
 
 
