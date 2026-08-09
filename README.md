@@ -69,7 +69,9 @@ src/
 │
 ├── domain-logic/
 │   ├── memory/              # Short/long-term memory, contradiction detection
+│   │   └── skills/          # Domain-specific behavior rules
 │   ├── personality/         # Profile, variability, personality baseline
+│   │   └── skills/          # Domain-specific behavior rules
 │   ├── identity/            # Identity service, goals, calendar
 │   ├── psychology/          # Cognitive load, world state, psychological states
 │   ├── thoughts/            # Generator, verifier, false memories
@@ -77,11 +79,12 @@ src/
 │   ├── human-simulation/    # Timing, stickers, simulation engine
 │   ├── messaging-behavior/  # Message planner and executor
 │   ├── conversation/        # Manager, pipeline, context/prompt builder
+│   │   └── skills/          # Domain-specific behavior rules
 │   ├── offline-recovery/    # Context reconstruction, backlog, freshness scoring
 │   ├── longitudinal/        # Identity evolution, interest drift
 │   └── evaluation/          # Heuristics, quality assessment
 │
-├── skills/                  # Agent skills runtime (registry, loader, execution)
+├── skills/                  # Skill registry, loader, and cross-cutting rules
 ├── runtime/                 # Composition root — bootstrap and wiring
 └── dashboard/               # Internal admin UI for inspection and tuning
 ```
@@ -99,7 +102,7 @@ src/
 | Testing | Vitest (171 tests, 23 modules) |
 | LLM Providers | OpenAI, Anthropic, Google, Ollama, OpenRouter |
 | Transport | Baileys (WhatsApp), Cloud API |
-| Skills | Built-in skill registry (`src/skills/`) with domain-specific `SKILL.md` files |
+| Skills | Built-in skill registry with domain-specific `SKILL.md` files |
 
 ---
 
@@ -133,6 +136,27 @@ OPENROUTER_API_KEY=...
 WHATSAPP_PROVIDER=baileys
 LOG_LEVEL=info
 ```
+
+---
+
+## Skills
+
+AlterEgo uses a built-in skill system to encode domain-specific behavior as versionable Markdown files. Skills are discovered automatically at boot from two locations:
+
+| Scope | Location | Purpose |
+|-------|----------|---------|
+| **Module-local skills** | `src/<module>/skills/SKILL.md` | Rules owned by a specific bounded context |
+| **Cross-cutting rules** | `src/skills/rules/*.md` | Shared governance (testing, security, observability) |
+
+**Built-in domain skills:**
+
+| Skill | Location | Purpose |
+|-------|----------|---------|
+| Conversation | `src/conversation/skills/SKILL.md` | Turn behavior, context injection, persona consistency |
+| Memory | `src/memory/skills/SKILL.md` | Storage, retrieval, contradiction handling, consolidation |
+| Personality | `src/personality/skills/SKILL.md` | Tone, energy, humor, and behavioral consistency |
+
+Skills are parsed from YAML frontmatter + Markdown body and loaded into an in-memory registry at boot. No external dependencies or submodules required.
 
 ---
 
@@ -178,13 +202,14 @@ npm test
 - `docs/architecture/v2-human-simulation.md` — Human Simulation Layer
 - `docs/architecture/v3-identity-continuity.md` — Identity & Offline Recovery
 - `AGENTS.md` — Instructions for AI coding agents working in this repo
-- `src/skills/` — Built-in skill registry and domain-specific `SKILL.md` files
+- `src/skills/` — Skill registry, loader, and cross-cutting rules
+- `src/*/skills/SKILL.md` — Domain-specific behavior rules per module
 
 ---
 
 ## Contributing
 
-This project follows a spec-first workflow encoded in `src/skills/rules/`:
+This project follows a spec-first workflow:
 
 1. **Spec** — Define the change before coding
 2. **Plan** — Break into atomic tasks
