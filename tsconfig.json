@@ -11,7 +11,7 @@
     "types": ["node"],
     "baseUrl": ".",
     "paths": {
-      "@alterego/*": ["src/*/index.ts"]
+      "@alterego/*": ["src/*/Index.ts"]
     }
   },
   "include": ["src", "test", "vitest.config.ts"]
