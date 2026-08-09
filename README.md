@@ -1,165 +1,150 @@
 # AlterEgo
 
 <p align="center">
-  <strong>Um agente conversacional autônomo com memória de longo prazo, identidade própria e comportamento humano simulado.</strong>
+  <strong>An autonomous conversational agent with long-term memory, continuous identity, and simulated human behavior.</strong>
 </p>
 
 <p align="center">
-  Não é um chatbot genérico. Cada persona é um <em>alter ego</em>: uma pessoa simulada, contínua e auto-consistente — não um responder stateless.
+  Not a generic chatbot wrapper. Each persona is an <em>alter ego</em>: a continuous, self-consistent simulated person — not a stateless responder.
 </p>
 
 ---
 
-## Sobre o Projeto
-
-O **AlterEgo** é um projeto de pesquisa experimental que simula seres humanos artificiais capazes de:
-
-- 🧠 **Memória de longo prazo** — lembra de conversas, eventos e identidade ao longo do tempo
-- 🎭 **Identidade contínua** — objetivos, personalidade, timeline de vida e evolução própria
-- ⏱️ **Comportamento humano realista** — timing variável, stickers, estados psicológicos, carga cognitiva
-- 🔄 **Offline Recovery** — reconstrói contexto ao voltar de uma ausência, sem perder a linha
-- 🌐 **Multi-provider LLM** — roteamento inteligente entre OpenAI, Anthropic, Google, Ollama e OpenRouter
-
-A arquitetura é dividida em **camadas de bounded contexts**, cada uma com sua responsabilidade, mantendo fronteiras de módulo rígidas via imports explícitos.
-
----
-
-## Arquitetura
-
-```
-src/
-├── foundational/
-│   ├── config/           # Configuração central com Zod schemas
-│   ├── events/           # Event bus para comunicação intra-módulo
-│   ├── llm/              # Router, circuit breaker, adapters de providers
-│   ├── data/             # Repositórios, MikroORM, schema SQLite/Postgres
-│   ├── security/         # Auth, rate-limiter, retention, validação
-│   ├── observability/    # Logger, métricas, health checks, token tracking
-│   └── scheduler/        # Fila em memória, idle timer, agendamento
-│
-├── i-o-edges/
-│   ├── gateway/          # Transport adapters (Baileys/WhatsApp, Cloud API)
-│   └── media/            # Processamento de mídia
-│
-├── domain-logic/
-│   ├── memory/           # Memória de curto/longo prazo, contradições
-│   ├── personality/      # Perfil, variabilidade, baseline de personalidade
-│   ├── identity/         # Serviço de identidade, goals, calendar
-│   ├── psychology/       # Carga cognitiva, world state, estados
-│   ├── thoughts/         # Gerador, verificador, falsas memórias
-│   ├── social-graph/     # Grafo social, clusters, relações
-│   ├── human-simulation/ # Timing, stickers, engine de simulação
-│   ├── messaging-behavior/ # Planner e executor de mensagens
-│   ├── conversation/     # Gerenciador, pipeline, context/prompt builder
-│   ├── offline-recovery/ # Reconstrução de contexto, backlog, freshness
-│   ├── longitudinal/     # Evolução de identidade, drift de interesses
-│   └── evaluation/       # Heurísticas, avaliação de qualidade
-│
-├── runtime/              # Composition root — bootstrap e wiring
-└── dashboard/            # UI interna para inspeção e tuning
-```
-
----
-
-## Pré-requisitos
-
-| Ferramenta | Versão | Descrição |
-|------------|--------|-----------|
-| Node.js | >= 20 | Runtime |
-| npm | >= 9 | Gerenciador de pacotes |
-| PostgreSQL | >= 14 | Banco principal (opcional p/ dev) |
-| Redis | >= 7 | Cache e filas (opcional p/ dev) |
-
-> **Dica para desenvolvimento rápido**: Use o modo `dev:memory` — ele roda com SQLite em memória, sem precisar de Postgres ou Redis instalados.
-
----
-
-## Setup
+## Quick Start
 
 ```bash
-# 1. Clone e instale dependências
+# 1. Clone and install
 git clone https://github.com/cepard01/alterego.git
 cd alterego
 npm install
 
-# 2. Configure variáveis de ambiente
+# 2. Configure environment
 cp .env.example .env
-# Edite o .env com suas chaves de API e URLs de banco
+
+# 3. Boot in-memory (zero external dependencies)
+npm run dev:memory
+
+# 4. Or boot against Postgres + Redis
+npm run dev
 ```
 
-### Variáveis de ambiente obrigatórias
+| Command | Description |
+|---------|-------------|
+| `npm run typecheck` | Strict TypeScript check (`tsc --noEmit`) |
+| `npm test` | Full Vitest suite — 171 tests, no DB needed |
+| `npm run test:watch` | Watch mode with HMR |
+| `npm run dev:memory` | SQLite in-memory runtime — zero external dependencies |
+| `npm run dev` | Runtime against Postgres + Redis |
+
+---
+
+## What It Does
+
+AlterEgo is an experimental research platform that simulates continuous, realistic artificial humans. Each persona maintains:
+
+- 🧠 **Long-term memory** — recalls conversations, events, and identity across sessions
+- 🎭 **Continuous identity** — goals, personality profile, life timeline, and self-evolution
+- ⏱️ **Human timing** — variable response delays, sticker selection, psychological states, cognitive load
+- 🔄 **Offline Recovery** — reconstructs context after absence without losing the thread
+- 🌐 **Multi-provider LLM** — intelligent routing across OpenAI, Anthropic, Google, Ollama, and OpenRouter with circuit breakers
+
+---
+
+## Architecture
+
+```
+src/
+├── foundational/
+│   ├── config/              # Centralized config with Zod schemas
+│   ├── events/              # Event bus for intra-module communication
+│   ├── llm/                 # Router, circuit breaker, provider adapters
+│   ├── data/                # Repositories, MikroORM, SQLite/Postgres schema
+│   ├── security/            # Auth, rate limiting, retention, validation
+│   ├── observability/       # Logger, metrics, health checks, token tracking
+│   └── scheduler/           # In-memory queue, idle timer, job scheduling
+│
+├── i-o-edges/
+│   ├── gateway/             # Transport adapters (Baileys/WhatsApp, Cloud API)
+│   └── media/               # Media processing
+│
+├── domain-logic/
+│   ├── memory/              # Short/long-term memory, contradiction detection
+│   ├── personality/         # Profile, variability, personality baseline
+│   ├── identity/            # Identity service, goals, calendar
+│   ├── psychology/          # Cognitive load, world state, psychological states
+│   ├── thoughts/            # Generator, verifier, false memories
+│   ├── social-graph/        # Social graph, clusters, relationships
+│   ├── human-simulation/    # Timing, stickers, simulation engine
+│   ├── messaging-behavior/  # Message planner and executor
+│   ├── conversation/        # Manager, pipeline, context/prompt builder
+│   ├── offline-recovery/    # Context reconstruction, backlog, freshness scoring
+│   ├── longitudinal/        # Identity evolution, interest drift
+│   └── evaluation/          # Heuristics, quality assessment
+│
+├── skills/                  # Agent skills runtime (registry, loader, execution)
+├── runtime/                 # Composition root — bootstrap and wiring
+└── dashboard/               # Internal admin UI for inspection and tuning
+```
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|------------|
+| Runtime | Node.js >= 20, ESM |
+| Language | TypeScript 5.5 (strict mode) |
+| ORM | MikroORM v7 (SQLite / PostgreSQL) |
+| Validation | Zod |
+| Testing | Vitest (171 tests, 23 modules) |
+| LLM Providers | OpenAI, Anthropic, Google, Ollama, OpenRouter |
+| Transport | Baileys (WhatsApp), Cloud API |
+| Skills | agent-skills (addyosmani/agent-skills) |
+
+---
+
+## Prerequisites
+
+| Tool | Version | Purpose |
+|------|---------|---------|
+| Node.js | >= 20 | Runtime |
+| npm | >= 9 | Package manager |
+| PostgreSQL | >= 14 | Primary database (optional for `dev:memory`) |
+| Redis | >= 7 | Cache and queues (optional for `dev:memory`) |
+
+> **Pro tip**: Use `npm run dev:memory` for instant startup — it runs on SQLite in-memory with no external services required.
+
+---
+
+## Environment Variables
 
 ```env
-# Banco de dados (Postgres em produção, SQLite em dev:memory)
+# Database (Postgres in production, SQLite in dev:memory)
 DATABASE_URL=postgres://localhost:5432/alterego
 REDIS_URL=redis://localhost:6379
 
-# Chaves de pelo menos um provedor LLM
+# At least one LLM provider key
 OPENAI_API_KEY=sk-...
 ANTHROPIC_API_KEY=sk-ant-...
 GOOGLE_API_KEY=...
 OPENROUTER_API_KEY=...
 
-# Configurações do gateway
+# Gateway configuration
 WHATSAPP_PROVIDER=baileys
 LOG_LEVEL=info
 ```
 
 ---
 
-## Como Rodar
+## Tests
 
-### Modo desenvolvimento com banco real (Postgres + Redis)
-
-```bash
-# Certifique-se que Postgres e Redis estão rodando
-npm run dev
-```
-
-### Modo desenvolvimento rápido (sem banco externo)
-
-```bash
-# Roda com SQLite em memória + MikroORM
-# Nenhum Postgres ou Redis necessário
-npm run dev:memory
-```
-
-### Comandos úteis
-
-```bash
-# Type check rigoroso (src + test)
-npm run typecheck
-
-# Rodar toda a suíte de testes
-npm test
-
-# Rodar testes em modo watch (desenvolvimento)
-npm run test:watch
-```
-
----
-
-## Scripts Disponíveis
-
-| Comando | Descrição |
-|---------|-----------|
-| `npm run typecheck` | TypeScript strict check (`tsc --noEmit`) |
-| `npm test` | Suíte completa de testes (Vitest) |
-| `npm run test:watch` | Testes em modo watch com HMR |
-| `npm run dev` | Boot do runtime contra Postgres + Redis |
-| `npm run dev:memory` | Boot com SQLite em memória, zero dependências externas |
-
----
-
-## Testes
-
-A suíte roda **171 testes** cobrindo 23 módulos. Nenhum banco de dados externo é necessário para rodar os testes.
+The suite runs **171 tests** across **23 modules**. No external database is required.
 
 ```bash
 npm test
 ```
 
-**Cobertura por módulo:**
+**Module coverage:**
 - Config, Events, Gateway, LLM, Data, Scheduler
 - Identity, Memory, Personality, Psychology
 - Conversation, MessagingBehavior, HumanSimulation
@@ -168,44 +153,56 @@ npm test
 
 ---
 
-## Decisões Técnicas
-
-- **ESM puro** — `"type": "module"` em todo o projeto
-- **MikroORM v7** — schema auto-criado, suporte a SQLite e Postgres, lazy init
-- **Vitest** — testes rápidos com HMR
-- **Zod** — validação de config e schemas de API
-- **Cross-module via eventos** — módulos não se chamam diretamente, usam o event bus
-- **Type-only re-exports** — `export type` para evitar bundling de tipos em runtime
-
----
-
-## Status do Projeto
+## Project Status
 
 > [!IMPORTANT]
-> Projeto em desenvolvimento ativo. A arquitetura está completa e funcional — tipos passam, 171/171 testes verdes, runtime boota.
+> Active development. Architecture is complete and functional — typecheck passes, 171/171 tests green, runtime boots successfully.
 
-### Checklist
+### Milestones
 
-- [x] Arquitetura v1 (Plataforma base)
-- [x] Arquitetura v2 (Human Simulation Layer)
-- [x] Arquitetura v3 (Identity Continuity)
-- [x] Schema de banco + 30 entidades MikroORM
-- [x] Repositórios com SQL parametrizado
-- [x] Router LLM multi-provider com circuit breaker
+- [x] v1 Platform Architecture (core platform)
+- [x] v2 Human Simulation Layer (timing, variability, psychology)
+- [x] v3 Identity Continuity (goals, timeline, offline recovery)
+- [x] 30 MikroORM entities with auto-schema
+- [x] Parameterized SQL repositories
+- [x] Multi-provider LLM router with circuit breaker
 - [x] Offline Recovery Engine
-- [x] 171 testes passing
+- [x] 171 tests passing
+- [x] Agent Skills integration (addyosmani/agent-skills)
 
 ---
 
-## Documentação
+## Documentation
 
 - `docs/architecture/v1-platform-architecture.md` — Core platform
 - `docs/architecture/v2-human-simulation.md` — Human Simulation Layer
 - `docs/architecture/v3-identity-continuity.md` — Identity & Offline Recovery
-- `AGENTS.md` — Instruções para agentes de IA trabalhando no repo
+- `AGENTS.md` — Instructions for AI coding agents working in this repo
+- `references/agent-skills/` — Production-grade engineering skills for AI coding agents
+
+---
+
+## Contributing
+
+This project follows the [Agent Skills](https://github.com/addyosmani/agent-skills) workflow:
+
+1. **Spec** — Define the change before coding (`/spec`)
+2. **Plan** — Break into atomic tasks (`/plan`)
+3. **Build** — Implement incrementally (`/build`)
+4. **Test** — Prove it works (`/test`)
+5. **Review** — Quality gate before merge (`/review`)
+6. **Ship** — Deploy with confidence (`/ship`)
+
+See `AGENTS.md` for repository-specific conventions and module boundaries.
+
+---
+
+## License
+
+MIT
 
 ---
 
 <p align="center">
-  Construído com rigor arquitetural. Nada de atalhos.
+  Built with architectural rigor. No shortcuts.
 </p>

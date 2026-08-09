@@ -8,6 +8,7 @@ import { DataService } from '@alterego/data';
 import { SchedulerService } from '@alterego/scheduler';
 import { JsonLogger, Logger } from '@alterego/observability';
 import { MessageGateway, TransportAdapter } from '@alterego/gateway';
+import { join } from 'node:path';
 import { LLMRouter, LLMRequest, LLMResponse } from '@alterego/llm';
 import { IdentityService } from '@alterego/identity';
 import type { PersonalitySnapshot } from '@alterego/personality';
@@ -20,6 +21,7 @@ import { ConversationManager, ConversationStateManager, ContextBuilder, PromptBu
 import { RecoveryEngine } from '@alterego/offline-recovery';
 import { EvaluatorService } from '@alterego/evaluation';
 import { IdentityEvolutionService, LongitudinalScheduler } from '@alterego/longitudinal';
+import { InMemorySkillRegistry, loadSkillsFromDirectory, loadSkillsFromPath } from '@alterego/skills';
 
 type SimulatedActionLike = Pick<SimulatedAction, 'type' | 'timing' | 'confidence' | 'params' | 'reasoning'>;
 
@@ -72,6 +74,7 @@ export class AgentRuntime {
   readonly evaluator: EvaluatorService;
   readonly evolution: IdentityEvolutionService;
   readonly longitudinal: LongitudinalScheduler;
+  readonly skills: InMemorySkillRegistry;
 
   private readonly llm: LlmCompleterLike;
   private readonly executor: ResponseExecutor;
@@ -149,12 +152,32 @@ export class AgentRuntime {
     this.evaluator = new EvaluatorService(this.bus, this.data, undefined, this.llm);
     this.evolution = new IdentityEvolutionService(this.bus, this.data);
     this.longitudinal = new LongitudinalScheduler(this.scheduler);
+    this.skills = new InMemorySkillRegistry();
+    void this.loadSkills();
 
     this.bus.subscribe('MessageReceived', ({ payload }) => {
       void this.onMessageReceived(payload).catch((error) => {
         this.logger?.error('failed to process message', { error: String(error) });
       });
     });
+  }
+
+  private async loadSkills(): Promise<void> {
+    const paths = [
+      join(process.cwd(), 'src', 'skills'),
+      join(process.cwd(), 'references', 'agent-skills', 'skills'),
+    ];
+
+    for (const dir of paths) {
+      try {
+        const skills = await loadSkillsFromDirectory(dir);
+        for (const skill of skills) {
+          this.skills.register(skill);
+        }
+      } catch {
+        // skip missing skill directories
+      }
+    }
   }
 
   async start(): Promise<void> {
