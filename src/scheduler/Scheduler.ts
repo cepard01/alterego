@@ -62,7 +62,6 @@ export class SchedulerService {
   start(): void {
     if (this.timer) return;
     this.timer = setInterval(() => void this.tick(), this.tickIntervalMs);
-    this.timer.unref?.();
     this.logger?.info('scheduler started', { tickIntervalMs: this.tickIntervalMs });
   }
 
