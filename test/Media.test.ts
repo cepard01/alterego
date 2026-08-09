@@ -3,8 +3,8 @@ import { InMemoryEventBus } from '@alterego/events';
 import { ConfigService } from '@alterego/config';
 import { DataService } from '@alterego/data';
 import { LLMRouter } from '@alterego/llm';
-import { MediaProcessor } from '../src/media/index.js';
-import { MediaAnalysis, MediaAnalyzer } from '../src/media/media-processor.js';
+import { MediaProcessor } from '../src/media/Index.js';
+import { MediaAnalysis, MediaAnalyzer } from '../src/media/MediaProcessor.js';
 
 function makeData(): DataService {
   const bus = new InMemoryEventBus();
@@ -109,3 +109,5 @@ describe('MediaProcessor', () => {
     expect(result).toBeNull();
   });
 });
+
+

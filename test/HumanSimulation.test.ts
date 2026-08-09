@@ -2,8 +2,8 @@ import { describe, expect, it } from 'vitest';
 import { ConfigService } from '@alterego/config';
 import { InMemoryEventBus } from '@alterego/events';
 import { DataService } from '@alterego/data';
-import { HumanSimulationEngine, StickerSelector, TimingModel } from '../src/human-simulation/index.js';
-import type { DecideInput } from '../src/human-simulation/index.js';
+import { HumanSimulationEngine, StickerSelector, TimingModel } from '../src/human-simulation/Index.js';
+import type { DecideInput } from '../src/human-simulation/Index.js';
 
 function makeInput(overrides: Partial<DecideInput> = {}): DecideInput {
   return {
@@ -180,3 +180,4 @@ describe('StickerSelector', () => {
     expect(picked).toBeUndefined();
   });
 });
+

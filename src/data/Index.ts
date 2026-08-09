@@ -1,52 +1,52 @@
 // Data access layer — repositories + migrations for every persisted entity
 // (v1 §4/§14, v2 & v3 additions). No other package writes raw SQL.
 
-export { createDb, createMikroDb, createRedis, MemoryDb, PostgresDb, MikroOrmDbContext } from './db.js';
-export type { Db, QueryResultLike, Tx } from './db.types.js';
-export { runMigrations } from './migrate.js';
-export type { MigrationRecord } from './migrate.js';
-export { DataService } from './data.service.js';
-export type { DataServiceOptions } from './data.service.js';
+export { createDb, createMikroDb, createRedis, MemoryDb, PostgresDb, MikroOrmDbContext } from './Db.js';
+export type { Db, QueryResultLike, Tx } from './DbTypes.js';
+export { runMigrations } from './Migrate.js';
+export type { MigrationRecord } from './Migrate.js';
+export { DataService } from './DataService.js';
+export type { DataServiceOptions } from './DataService.js';
 
-export { UserRepository, RelationshipRepository, InteractionHistoryRepository } from './repositories/users.repo.js';
+export { UserRepository, RelationshipRepository, InteractionHistoryRepository } from './repositories/UsersRepo.js';
 export {
   ConversationRepository,
   MediaRepository,
   MessageRepository,
   SessionRepository,
-} from './repositories/conversations.repo.js';
-export { DEFAULT_RANK_WEIGHTS, KnowledgeRepository, MemoryRepository, rankMemory } from './repositories/memory.repo.js';
-export type { MemoryRankInput, MemoryRankWeights } from './repositories/memory.repo.js';
+} from './repositories/ConversationsRepo.js';
+export { DEFAULT_RANK_WEIGHTS, KnowledgeRepository, MemoryRepository, rankMemory } from './repositories/MemoryRepo.js';
+export type { MemoryRankInput, MemoryRankWeights } from './repositories/MemoryRepo.js';
 export {
   BehaviorProfileRepository,
   PersonalityRepository,
   ReminderRepository,
   StickerRepository,
   TaskQueueRepository,
-} from './repositories/behavior.repo.js';
+} from './repositories/BehaviorRepo.js';
 export {
   EvaluationReportRepository,
   PsychologyStateRepository,
   ThoughtRepository,
   WorldStateRepository,
-} from './repositories/simulation.repo.js';
+} from './repositories/SimulationRepo.js';
 export {
   SocialClusterRepository,
   SocialGraphEdgeRepository,
   SocialGraphNodeRepository,
-} from './repositories/social.repo.js';
+} from './repositories/SocialRepo.js';
 export {
   CalendarEntryRepository,
   GoalRepository,
   IdentityProfileRepository,
   InventoryItemRepository,
   TimelineEventRepository,
-} from './repositories/identity.repo.js';
+} from './repositories/IdentityRepo.js';
 export {
   IdentityEvolutionProposalRepository,
   MemoryContradictionRepository,
   RecoveryPlanRepository,
-} from './repositories/v3.repo.js';
+} from './repositories/V3Repo.js';
 
 export type {
   BehaviorProfile,
@@ -78,4 +78,5 @@ export type {
   TimelineEvent,
   User,
   WorldState,
-} from './types.js';
+} from './Types.js';
+

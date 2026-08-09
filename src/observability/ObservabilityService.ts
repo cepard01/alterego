@@ -3,10 +3,10 @@
 
 import { AppConfig, ConfigService, LogLevel } from '@alterego/config';
 import { EventBus } from '@alterego/events';
-import { JsonLogger, LogSink, Logger } from './logger.js';
-import { attachPipelineMetrics, messageLifecycleLatency, MetricsRegistry } from './metrics.js';
-import { HealthRegistry } from './health.js';
-import { TokenCostTracker, TokenCostTrackerOptions } from './token-tracking.js';
+import { JsonLogger, LogSink, Logger } from './Logger.js';
+import { attachPipelineMetrics, messageLifecycleLatency, MetricsRegistry } from './Metrics.js';
+import { HealthRegistry } from './Health.js';
+import { TokenCostTracker, TokenCostTrackerOptions } from './TokenTracking.js';
 
 export interface ObservabilityOptions {
   sink?: LogSink;
@@ -46,3 +46,4 @@ export class ObservabilityService {
     this.detach.forEach((detach) => detach());
   }
 }
+

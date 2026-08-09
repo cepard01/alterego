@@ -2,8 +2,8 @@
 // provider, agent persona, etc.). Values are JSON strings; the schema's
 // `settings` table lives in schema-sqlite.ts and 0005_local_settings.sql.
 
-import { Db } from '../db.types.js';
-import { nowIso } from './base.js';
+import { Db } from '../DbTypes.js';
+import { nowIso } from './Base.js';
 
 export class SettingsRepository {
   constructor(private readonly db: Db) {}
@@ -43,3 +43,5 @@ export class SettingsRepository {
     });
   }
 }
+
+

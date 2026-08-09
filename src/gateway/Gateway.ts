@@ -5,8 +5,8 @@ import { AppConfig, ConfigService } from '@alterego/config';
 import { EventBus } from '@alterego/events';
 import { Logger } from '@alterego/observability';
 import { RateLimiter, sanitizeMessageText } from '@alterego/security';
-import { CloudApiAdapter } from './adapters/cloud-api.js';
-import { InboundMessage, OutboundMessage, PresenceState, SendResult, TransportAdapter } from './types.js';
+import { CloudApiAdapter } from './adapters/CloudApi.js';
+import { InboundMessage, OutboundMessage, PresenceState, SendResult, TransportAdapter } from './Types.js';
 
 export interface GatewayOptions {
   bus: EventBus;
@@ -134,3 +134,4 @@ export class MessageGateway {
     await adapter.setPresence(conversationId, state).catch(() => undefined);
   }
 }
+

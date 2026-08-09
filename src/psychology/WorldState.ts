@@ -4,7 +4,7 @@
 
 import type { EventBus } from '@alterego/events';
 import type { WorldState } from '@alterego/data';
-import { CalendarBridge, CalendarOverride, clamp01, WorldStateTickInput } from './types.js';
+import { CalendarBridge, CalendarOverride, clamp01, WorldStateTickInput } from './Types.js';
 
 interface WorldStateRepo {
   upsert(state: Omit<WorldState, 'id' | 'updatedAt'> & { id?: string }): Promise<WorldState>;
@@ -188,3 +188,4 @@ export class WorldStateService {
     return Math.min(100, battery + 4);
   }
 }
+

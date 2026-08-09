@@ -4,14 +4,14 @@
 import { AppConfig, ConfigService, LlmCapability } from '@alterego/config';
 import { EventBus, LLMCompletedPayload } from '@alterego/events';
 import { Logger } from '@alterego/observability';
-import { pickModel, ProviderAdapter } from './adapters/provider.js';
-import { AnthropicAdapter } from './adapters/anthropic.js';
-import { GoogleAdapter } from './adapters/google.js';
-import { OllamaAdapter } from './adapters/ollama.js';
-import { OpenAiCompatibleAdapter } from './adapters/openai-compatible.js';
-import { OpenRouterAdapter } from './adapters/openrouter.js';
-import { CircuitBreaker } from './circuit-breaker.js';
-import { LLMError, LLMRequest, LLMResponse, LLMRouterStats } from './types.js';
+import { pickModel, ProviderAdapter } from './adapters/Provider.js';
+import { AnthropicAdapter } from './adapters/Anthropic.js';
+import { GoogleAdapter } from './adapters/Google.js';
+import { OllamaAdapter } from './adapters/Ollama.js';
+import { OpenAiCompatibleAdapter } from './adapters/OpenAICompatible.js';
+import { OpenRouterAdapter } from './adapters/OpenRouter.js';
+import { CircuitBreaker } from './CircuitBreaker.js';
+import { LLMError, LLMRequest, LLMResponse, LLMRouterStats } from './Types.js';
 
 export interface LLMRouterOptions {
   bus: EventBus;
@@ -162,3 +162,4 @@ export class LLMRouter {
     }));
   }
 }
+

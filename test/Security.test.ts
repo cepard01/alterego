@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { AdminAuth, ForgetMeService, RateLimiter, isValidPhoneNumber, sanitizeMessageText, validateMedia } from '../src/security/index.js';
+import { AdminAuth, ForgetMeService, RateLimiter, isValidPhoneNumber, sanitizeMessageText, validateMedia } from '../src/security/Index.js';
 
 describe('AdminAuth', () => {
   it('authenticates a valid token with role claim', () => {
@@ -98,7 +98,7 @@ describe('validate', () => {
 
 describe('ForgetMeService', () => {
   it('cascade-deletes a user and reports counts', async () => {
-    const { createDataService } = await import('./security-helpers.js');
+    const { createDataService } = await import('./SecurityHelpers.js');
     const data = createDataService();
     await data.users.create({
       id: 'u1',
@@ -135,3 +135,4 @@ describe('ForgetMeService', () => {
     expect((await data.memory.listByUser('u1')).length).toBe(0);
   });
 });
+

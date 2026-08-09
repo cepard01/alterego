@@ -2,7 +2,7 @@
 // probabilistic model (v2 §7). Read/typing/send delays derived from
 // activity, relationship, importance, time of day and attention span.
 
-import { TimingInput, TimingPlan } from './types.js';
+import { TimingInput, TimingPlan } from './Types.js';
 
 /** Gaussian-ish sample centered on `mean` with `std` as fraction of mean. */
 function jitter(mean: number, stdFraction = 0.15): number {
@@ -56,3 +56,4 @@ export class TimingModel {
     };
   }
 }
+

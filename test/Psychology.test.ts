@@ -2,8 +2,8 @@ import { describe, expect, it } from 'vitest';
 import { ConfigService } from '@alterego/config';
 import { InMemoryEventBus } from '@alterego/events';
 import { DataService } from '@alterego/data';
-import { CognitiveLoadService, PsychologyService, WorldStateService } from '../src/psychology/index.js';
-import type { CalendarBridge } from '../src/psychology/index.js';
+import { CognitiveLoadService, PsychologyService, WorldStateService } from '../src/psychology/Index.js';
+import type { CalendarBridge } from '../src/psychology/Index.js';
 
 function makeServices() {
   const bus = new InMemoryEventBus();
@@ -143,3 +143,4 @@ describe('CognitiveLoadService', () => {
     expect(score.contributingFactors.unreadCount).toBe(10);
   });
 });
+

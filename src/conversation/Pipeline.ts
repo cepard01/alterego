@@ -5,9 +5,9 @@
 
 import type { SimulatedAction } from '@alterego/human-simulation';
 import type { LLMRequest, LLMResponse } from '@alterego/llm';
-import type { ContextBuilder, ContextInput } from './context-builder.js';
-import type { PromptBuilder, PromptInput } from './prompt-builder.js';
-import type { ConversationStateManager } from './state-manager.js';
+import type { ContextBuilder, ContextInput } from './ContextBuilder.js';
+import type { PromptBuilder, PromptInput } from './PromptBuilder.js';
+import type { ConversationStateManager } from './StateManager.js';
 
 export interface PipelineResult {
   action: SimulatedAction;
@@ -70,3 +70,4 @@ export class ConversationPipeline {
     };
   }
 }
+

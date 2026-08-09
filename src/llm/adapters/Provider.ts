@@ -2,7 +2,7 @@
 // LLMRequest into its vendor's wire format and back (v1 §11).
 
 import { ModelConfig, ProviderConfig } from '@alterego/config';
-import { LLMRequest, LLMResponse } from '../types.js';
+import { LLMRequest, LLMResponse } from '../Types.js';
 
 export interface ProviderAdapter {
   readonly name: string;
@@ -29,3 +29,4 @@ export function pickModel(
   }
   return candidates[0];
 }
+

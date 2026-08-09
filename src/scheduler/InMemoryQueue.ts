@@ -2,7 +2,7 @@
 // use data's TaskQueueRepository in production.
 
 import { randomUUID } from 'node:crypto';
-import { ClaimedJob, JobQueue, ScheduledJob } from './types.js';
+import { ClaimedJob, JobQueue, ScheduledJob } from './Types.js';
 
 export class InMemoryJobQueue implements JobQueue {
   private readonly jobs = new Map<string, ClaimedJob>();
@@ -46,3 +46,4 @@ export class InMemoryJobQueue implements JobQueue {
     return this.jobs.size;
   }
 }
+

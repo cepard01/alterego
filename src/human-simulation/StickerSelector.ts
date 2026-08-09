@@ -3,7 +3,7 @@
 //         - recency_penalty
 
 import type { Sticker } from '@alterego/data';
-import { StickerSelectionInput } from './types.js';
+import { StickerSelectionInput } from './Types.js';
 
 interface StickerRepo {
   list(): Promise<Sticker[]>;
@@ -54,3 +54,4 @@ export class StickerSelector {
     return best;
   }
 }
+

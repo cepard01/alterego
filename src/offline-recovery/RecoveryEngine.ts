@@ -6,9 +6,9 @@
 import type { Message, RecoveryPlan } from '@alterego/data';
 import type { SchedulerService } from '@alterego/scheduler';
 import type { EventBus } from '@alterego/events';
-import { BacklogAnalyzer } from './backlog-analyzer.js';
-import { ContextReconstructor, ReconstructedContext } from './context-reconstructor.js';
-import { FreshnessResult, FreshnessScorer } from './freshness-scorer.js';
+import { BacklogAnalyzer } from './BacklogAnalyzer.js';
+import { ContextReconstructor, ReconstructedContext } from './ContextReconstructor.js';
+import { FreshnessResult, FreshnessScorer } from './FreshnessScorer.js';
 
 export const RECOVERY_SEND_JOB = 'recovery.send';
 
@@ -158,3 +158,4 @@ export class RecoveryEngine {
 function indexOf<T>(list: T[], item: T): number {
   return list.indexOf(item);
 }
+

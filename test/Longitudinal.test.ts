@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { ConfigService } from '@alterego/config';
 import { InMemoryEventBus } from '@alterego/events';
 import { DataService } from '@alterego/data';
-import { IdentityEvolutionService, InterestDriftDetector, LongitudinalScheduler } from '../src/longitudinal/index.js';
+import { IdentityEvolutionService, InterestDriftDetector, LongitudinalScheduler } from '../src/longitudinal/Index.js';
 import type { Thought } from '@alterego/data';
 
 function makeThought(agentId: string, content: string, day: string): Thought {
@@ -211,3 +211,4 @@ describe('LongitudinalScheduler', () => {
     void runs;
   });
 });
+

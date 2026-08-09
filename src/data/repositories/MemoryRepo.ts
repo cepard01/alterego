@@ -2,9 +2,9 @@
 // fields), Knowledge. Memory ranking blends similarity, importance, recency
 // and social relevance per v1 §5 / v2 §4 / v3 §7.
 
-import { Db } from '../db.types.js';
-import { Knowledge, Memory } from '../types.js';
-import { camelToSnake, newId, nowIso, parseJson, firstRow } from './base.js';
+import { Db } from '../DbTypes.js';
+import { Knowledge, Memory } from '../Types.js';
+import { camelToSnake, newId, nowIso, parseJson, firstRow } from './Base.js';
 
 export interface MemoryRankInput {
   similarity?: number;
@@ -289,3 +289,5 @@ export class KnowledgeRepository {
 }
 
 export { parseJson };
+
+

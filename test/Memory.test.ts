@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { InMemoryEventBus } from '@alterego/events';
 import { ConfigService } from '@alterego/config';
 import { DataService } from '@alterego/data';
-import { MemoryManager } from '../src/memory/index.js';
+import { MemoryManager } from '../src/memory/Index.js';
 
 function makeManager(): { manager: MemoryManager; data: DataService } {
   const bus = new InMemoryEventBus();
@@ -97,3 +97,4 @@ describe('MemoryManager', () => {
     expect(await conversationMemory.getTopicStack('c1')).toEqual(['trabalho', 'viagem']);
   });
 });
+

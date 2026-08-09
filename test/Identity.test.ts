@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { ConfigService } from '@alterego/config';
 import { InMemoryEventBus } from '@alterego/events';
 import { DataService } from '@alterego/data';
-import { IdentityService } from '../src/identity/index.js';
+import { IdentityService } from '../src/identity/Index.js';
 
 function makeService(): IdentityService {
   const bus = new InMemoryEventBus();
@@ -121,3 +121,4 @@ describe('IdentityService', () => {
     expect(none).toHaveLength(0);
   });
 });
+

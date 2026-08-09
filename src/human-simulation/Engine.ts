@@ -3,9 +3,9 @@
 // not talk to the LLM; its output becomes a Behavior Rule downstream.
 
 import type { EventBus } from '@alterego/events';
-import { DecideInput, ReasoningThought, SimulatedAction, SimulatedActionType } from './types.js';
-import { TimingModel } from './timing-model.js';
-import { StickerSelector } from './sticker-selector.js';
+import { DecideInput, ReasoningThought, SimulatedAction, SimulatedActionType } from './Types.js';
+import { TimingModel } from './TimingModel.js';
+import { StickerSelector } from './StickerSelector.js';
 
 const clamp01 = (value: number): number => Math.min(1, Math.max(0, value));
 
@@ -157,3 +157,4 @@ export class HumanSimulationEngine {
 }
 
 export type { SimulatedAction, SimulatedActionType };
+

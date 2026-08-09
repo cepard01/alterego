@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { InMemoryEventBus } from '@alterego/events';
-import { AgentRuntime } from '../src/runtime/index.js';
+import { AgentRuntime } from '../src/runtime/Index.js';
 import type { OutboundMessage, SendResult, TransportAdapter } from '@alterego/gateway';
 
 function makeTransport(): { adapter: TransportAdapter; sent: OutboundMessage[] } {
@@ -157,3 +157,4 @@ describe('AgentRuntime', () => {
     expect(llmCalls).toBe(0);
   });
 });
+

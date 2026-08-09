@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
-import { InMemoryEventBus } from '../src/events/event-bus.js';
-import type { AppEvent, EventBus } from '../src/events/event-bus.js';
-import type { MessageReceivedPayload } from '../src/events/events.js';
+import { InMemoryEventBus } from '../src/events/EventBus.js';
+import type { AppEvent, EventBus } from '../src/events/EventBus.js';
+import type { MessageReceivedPayload } from '../src/events/Events.js';
 
 describe('InMemoryEventBus', () => {
   it('publishes and delivers events with envelope fields', () => {
@@ -111,3 +111,4 @@ describe('InMemoryEventBus', () => {
     expect(() => bus.publish('AgentBooted', { bootTime: new Date().toISOString(), lastActiveAt: null })).toThrow();
   });
 });
+

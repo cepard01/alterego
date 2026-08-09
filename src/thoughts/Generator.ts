@@ -4,7 +4,7 @@
 
 import type { EventBus } from '@alterego/events';
 import type { Thought } from '@alterego/data';
-import { GeneratedThought, LlmCompleter, ThoughtGeneratorOptions, TurnTranscriptInput } from './types.js';
+import { GeneratedThought, LlmCompleter, ThoughtGeneratorOptions, TurnTranscriptInput } from './Types.js';
 
 interface ThoughtRepo {
   create(thought: Omit<Thought, 'id' | 'createdAt' | 'verifiedAt' | 'verificationResult' | 'lastConfidenceDecayAt'> & { id?: string; createdAt?: string }): Promise<Thought>;
@@ -111,3 +111,4 @@ export class ThoughtGenerator {
       }));
   }
 }
+

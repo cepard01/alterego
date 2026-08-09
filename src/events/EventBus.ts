@@ -3,7 +3,7 @@
 // (Redis Streams / NATS / Kafka) can be swapped later without touching callers.
 // Source: v1 §13.
 
-import { EventPayload, EventPayloadMap, EventType } from './events.js';
+import { EventPayload, EventPayloadMap, EventType } from './Events.js';
 
 let nextEventId = 0;
 
@@ -141,3 +141,4 @@ export class InMemoryEventBus implements EventBus {
     }
   }
 }
+

@@ -1,7 +1,7 @@
 // Built-in defaults — lowest-priority config layer (v1 §15).
 // Overridden by environment variables and runtime admin overrides.
 
-import { AppConfig } from './config.schema.js';
+import { AppConfig } from './ConfigSchema.js';
 
 export const defaults: AppConfig = {
   env: 'development',
@@ -82,3 +82,4 @@ export const defaults: AppConfig = {
     enabled: true,
   },
 };
+

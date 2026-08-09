@@ -4,7 +4,7 @@
 
 import type { EventBus } from '@alterego/events';
 import type { PsychologyState } from '@alterego/data';
-import { clamp01, PsychologyTurnInput } from './types.js';
+import { clamp01, PsychologyTurnInput } from './Types.js';
 
 interface PsychologyRepo {
   upsert(state: Omit<PsychologyState, 'updatedAt'>): Promise<PsychologyState>;
@@ -106,3 +106,4 @@ export class PsychologyService {
     this.bus.publish('PsychologyUpdated', { userId, changes });
   }
 }
+

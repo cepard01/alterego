@@ -1,10 +1,9 @@
 import { Skill } from '@alterego/skills';
 import { parseSkill } from '@alterego/skills';
-import { readFile } from 'node:fs/promises';
-import { join, isAbsolute } from 'node:path';
+import { readFile, readdir, stat } from 'node:fs/promises';
+import { join, isAbsolute, dirname, basename } from 'node:path';
 
 export async function loadSkillsFromDirectory(dir: string): Promise<Skill[]> {
-  const { readdir } = await import('node:fs/promises');
   const entries = await readdir(dir, { withFileTypes: true, recursive: false });
   const skills: Skill[] = [];
 
@@ -24,7 +23,6 @@ export async function loadSkillsFromDirectory(dir: string): Promise<Skill[]> {
 
 export async function loadSkillsFromPath(path: string): Promise<Skill[]> {
   const resolved = isAbsolute(path) ? path : join(process.cwd(), path);
-  const { stat } = await import('node:fs/promises');
   const s = await stat(resolved).catch(() => null);
   if (!s) return [];
   if (s.isDirectory()) return loadSkillsFromDirectory(resolved);
@@ -33,4 +31,48 @@ export async function loadSkillsFromPath(path: string): Promise<Skill[]> {
     return [parseSkill(source, resolved)];
   }
   return [];
+}
+
+export async function loadModuleLocalSkills(root = process.cwd()): Promise<Skill[]> {
+  const src = join(root, 'src');
+  const entries = await readdir(src, { withFileTypes: true, recursive: false });
+  const skills: Skill[] = [];
+
+  for (const entry of entries) {
+    if (!entry.isDirectory()) continue;
+    const skillFile = join(src, entry.name, 'skills', 'SKILL.md');
+    try {
+      const source = await readFile(skillFile, 'utf-8');
+      skills.push(parseSkill(source, skillFile));
+    } catch {
+      // module has no local skill
+    }
+  }
+
+  return skills;
+}
+
+export async function loadCrossCuttingRules(root = process.cwd()): Promise<Skill[]> {
+  const rulesDir = join(root, 'src', 'skills', 'rules');
+  let entries: import('node:fs').Dirent[];
+  try {
+    entries = await readdir(rulesDir, { withFileTypes: true, recursive: false });
+  } catch {
+    return [];
+  }
+  const skills: Skill[] = [];
+
+  for (const entry of entries) {
+    if (entry.isDirectory()) continue;
+    const path = join(rulesDir, entry.name);
+    if (!path.endsWith('.md')) continue;
+    try {
+      const source = await readFile(path, 'utf-8');
+      skills.push(parseSkill(source, path));
+    } catch {
+      // skip unreadable rule
+    }
+  }
+
+  return skills;
 }

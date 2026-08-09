@@ -4,7 +4,7 @@
 
 import { readdir, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { Db } from './db.types.js';
+import { Db } from './DbTypes.js';
 
 export interface MigrationRecord {
   version: string;
@@ -37,3 +37,4 @@ export async function runMigrations(db: Db, migrationsDir: string): Promise<Migr
   }
   return records;
 }
+

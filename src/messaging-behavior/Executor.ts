@@ -5,7 +5,7 @@
 
 import type { EventBus } from '@alterego/events';
 import type { SendResult } from '@alterego/gateway';
-import { MessagePlan, PendingReminder, ReminderRepo, ReminderScheduler, Sender } from './types.js';
+import { MessagePlan, PendingReminder, ReminderRepo, ReminderScheduler, Sender } from './Types.js';
 
 export const REMINDER_FIRE_JOB = 'reminder.fire';
 
@@ -88,3 +88,4 @@ export class ResponseExecutor {
     return created;
   }
 }
+

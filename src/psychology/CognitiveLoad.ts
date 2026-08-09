@@ -2,7 +2,7 @@
 // Energy/Stress/Focus: captures "40 unread messages across 6 conversations".
 // Ephemeral by design — a rolling log of recent scores, not persisted state.
 
-import { clamp01, CognitiveLoadInput, CognitiveLoadScore } from './types.js';
+import { clamp01, CognitiveLoadInput, CognitiveLoadScore } from './Types.js';
 
 const LOG_SIZE = 100;
 
@@ -42,3 +42,4 @@ export class CognitiveLoadService {
     return [...this.log];
   }
 }
+

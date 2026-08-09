@@ -3,7 +3,7 @@
 // the context builder, and publishes new versions explicitly (v1 §7).
 
 import { Personality } from '@alterego/data';
-import { DEFAULT_PERSONALITY, PersonalityProfile, PersonalitySnapshot, toSnapshot } from './profile.js';
+import { DEFAULT_PERSONALITY, PersonalityProfile, PersonalitySnapshot, toSnapshot } from './Profile.js';
 
 /** Structural subset of the data package's PersonalityRepository. */
 export interface PersonalityData {
@@ -65,3 +65,4 @@ export class PersonalityService {
     this.cached = null;
   }
 }
+

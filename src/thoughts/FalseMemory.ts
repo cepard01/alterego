@@ -4,7 +4,7 @@
 
 import type { EventBus } from '@alterego/events';
 import type { Thought } from '@alterego/data';
-import { FalseMemoryOptions } from './types.js';
+import { FalseMemoryOptions } from './Types.js';
 
 interface ThoughtRepo {
   create(thought: Omit<Thought, 'id' | 'createdAt' | 'verifiedAt' | 'verificationResult' | 'lastConfidenceDecayAt'> & { id?: string; createdAt?: string }): Promise<Thought>;
@@ -75,3 +75,4 @@ export class FalseMemorySimulator {
     return created;
   }
 }
+

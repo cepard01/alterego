@@ -2,9 +2,9 @@ import { describe, expect, it } from 'vitest';
 import { ConfigService } from '@alterego/config';
 import { InMemoryEventBus } from '@alterego/events';
 import { DataService } from '@alterego/data';
-import { RecoveryEngine } from '../src/offline-recovery/index.js';
-import { ContextReconstructor } from '../src/offline-recovery/index.js';
-import { FreshnessScorer } from '../src/offline-recovery/index.js';
+import { RecoveryEngine } from '../src/offline-recovery/Index.js';
+import { ContextReconstructor } from '../src/offline-recovery/Index.js';
+import { FreshnessScorer } from '../src/offline-recovery/Index.js';
 import type { Message } from '@alterego/data';
 
 const HOUR = 3_600_000;
@@ -174,3 +174,4 @@ describe('RecoveryEngine', () => {
     expect(scheduler.calls.scheduled).toHaveLength(0);
   });
 });
+

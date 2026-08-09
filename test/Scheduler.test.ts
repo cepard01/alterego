@@ -1,8 +1,8 @@
 import { AppConfig } from '@alterego/config';
 import { InMemoryEventBus } from '@alterego/events';
 import { describe, expect, it, vi } from 'vitest';
-import { IdleTimer, InMemoryJobQueue, SchedulerService } from '../src/scheduler/index.js';
-import type { JobContext } from '../src/scheduler/index.js';
+import { IdleTimer, InMemoryJobQueue, SchedulerService } from '../src/scheduler/Index.js';
+import type { JobContext } from '../src/scheduler/Index.js';
 
 function makeConfig(overrides: Partial<AppConfig['scheduler']> = {}): AppConfig {
   return {
@@ -176,3 +176,4 @@ describe('IdleTimer', () => {
     idleTimer.stop();
   });
 });
+

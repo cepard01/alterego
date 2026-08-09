@@ -1,8 +1,8 @@
 // Google Gemini generateContent adapter (v1 §11).
 
 import { ProviderConfig } from '@alterego/config';
-import { LLMError, LLMRequest, LLMResponse } from '../types.js';
-import { HttpAdapterDeps, pickModel, ProviderAdapter } from './provider.js';
+import { LLMError, LLMRequest, LLMResponse } from '../Types.js';
+import { HttpAdapterDeps, pickModel, ProviderAdapter } from './Provider.js';
 
 function buildRequestBody(request: LLMRequest, model: string): Record<string, unknown> {
   const contents: Array<Record<string, unknown>> = [];
@@ -87,3 +87,5 @@ export class GoogleAdapter implements ProviderAdapter {
     return parseResponse(json, latencyMs, this.name, resolvedModel);
   }
 }
+
+

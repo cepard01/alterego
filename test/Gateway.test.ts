@@ -1,8 +1,8 @@
 import { describe, expect, it, vi } from 'vitest';
 import { InMemoryEventBus } from '@alterego/events';
 import { AppConfig } from '@alterego/config';
-import { MessageGateway } from '../src/gateway/index.js';
-import { InboundMessage, OutboundMessage, SendResult, TransportAdapter } from '../src/gateway/types.js';
+import { MessageGateway } from '../src/gateway/Index.js';
+import { InboundMessage, OutboundMessage, SendResult, TransportAdapter } from '../src/gateway/Types.js';
 
 function makeConfig(): AppConfig {
   return {
@@ -135,3 +135,4 @@ describe('MessageGateway', () => {
     expect(transport.presence).toEqual([{ conversationId: 'c1', state: 'offline' }]);
   });
 });
+

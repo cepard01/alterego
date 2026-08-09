@@ -6,7 +6,7 @@
 import type { EvaluationReport, Message } from '@alterego/data';
 import type { EventBus } from '@alterego/events';
 import type { LLMRequest } from '@alterego/llm';
-import { HeuristicResult, HeuristicScorer, HUMAN_LIKENESS_WEIGHTS, ReplyTimingExpectation } from './heuristics.js';
+import { HeuristicResult, HeuristicScorer, HUMAN_LIKENESS_WEIGHTS, ReplyTimingExpectation } from './Heuristics.js';
 
 export interface EvaluationDataPort {
   evaluationReports: {
@@ -143,3 +143,4 @@ export class EvaluatorService {
     }
   }
 }
+

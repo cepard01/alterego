@@ -2,8 +2,8 @@ import { describe, expect, it } from 'vitest';
 import { ConfigService } from '@alterego/config';
 import { InMemoryEventBus } from '@alterego/events';
 import { DataService } from '@alterego/data';
-import { PersonalityService, VariabilityModel } from '../src/personality/index.js';
-import { DEFAULT_PERSONALITY } from '../src/personality/profile.js';
+import { PersonalityService, VariabilityModel } from '../src/personality/Index.js';
+import { DEFAULT_PERSONALITY } from '../src/personality/Profile.js';
 
 function makeService(): PersonalityService {
   const bus = new InMemoryEventBus();
@@ -112,3 +112,5 @@ describe('VariabilityModel', () => {
     expect(swings).toBeLessThan(25);
   });
 });
+
+

@@ -3,7 +3,7 @@
 // adapter shape below is the contract, and the agent-runtime wiring layer
 // injects a functional implementation that uses @whiskeysockets/baileys.
 
-import { InboundMessage, OutboundMessage, PresenceState, SendResult, TransportAdapter } from '../types.js';
+import { InboundMessage, OutboundMessage, PresenceState, SendResult, TransportAdapter } from '../Types.js';
 
 // TODO(gateway): implement with @whiskeysockets/baileys once the runtime
 // environment provides the SDK. The interface is already the contract.
@@ -30,3 +30,4 @@ export class BaileysAdapter implements TransportAdapter {
     return null;
   }
 }
+

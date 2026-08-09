@@ -8,7 +8,6 @@ import { DataService } from '@alterego/data';
 import { SchedulerService } from '@alterego/scheduler';
 import { JsonLogger, Logger } from '@alterego/observability';
 import { MessageGateway, TransportAdapter } from '@alterego/gateway';
-import { join } from 'node:path';
 import { LLMRouter, LLMRequest, LLMResponse } from '@alterego/llm';
 import { IdentityService } from '@alterego/identity';
 import type { PersonalitySnapshot } from '@alterego/personality';
@@ -21,7 +20,7 @@ import { ConversationManager, ConversationStateManager, ContextBuilder, PromptBu
 import { RecoveryEngine } from '@alterego/offline-recovery';
 import { EvaluatorService } from '@alterego/evaluation';
 import { IdentityEvolutionService, LongitudinalScheduler } from '@alterego/longitudinal';
-import { InMemorySkillRegistry, loadSkillsFromDirectory, loadSkillsFromPath } from '@alterego/skills';
+import { InMemorySkillRegistry, loadCrossCuttingRules, loadModuleLocalSkills } from '@alterego/skills';
 
 type SimulatedActionLike = Pick<SimulatedAction, 'type' | 'timing' | 'confidence' | 'params' | 'reasoning'>;
 
@@ -163,19 +162,16 @@ export class AgentRuntime {
   }
 
   private async loadSkills(): Promise<void> {
-    const paths = [
-      join(process.cwd(), 'src', 'skills'),
-      join(process.cwd(), 'references', 'agent-skills', 'skills'),
-    ];
+    const loaded = new Set<string>();
 
-    for (const dir of paths) {
-      try {
-        const skills = await loadSkillsFromDirectory(dir);
-        for (const skill of skills) {
-          this.skills.register(skill);
-        }
-      } catch {
-        // skip missing skill directories
+    for (const skill of await loadModuleLocalSkills()) {
+      this.skills.register(skill);
+      loaded.add(skill.name);
+    }
+
+    for (const skill of await loadCrossCuttingRules()) {
+      if (!loaded.has(skill.name)) {
+        this.skills.register(skill);
       }
     }
   }

@@ -1,8 +1,8 @@
 // Repositories for user-centric v1 entities: User, Relationship, InteractionHistory.
 
-import { Db } from '../db.types.js';
-import { InteractionHistory, Relationship, User } from '../types.js';
-import { camelToSnake, newId, nowIso, parseJson, firstRow, toJson } from './base.js';
+import { Db } from '../DbTypes.js';
+import { InteractionHistory, Relationship, User } from '../Types.js';
+import { camelToSnake, newId, nowIso, parseJson, firstRow, toJson } from './Base.js';
 
 export class UserRepository {
   constructor(private readonly db: Db) {}
@@ -148,3 +148,5 @@ export class InteractionHistoryRepository {
     }));
   }
 }
+
+

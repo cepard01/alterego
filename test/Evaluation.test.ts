@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { ConfigService } from '@alterego/config';
 import { InMemoryEventBus } from '@alterego/events';
 import { DataService } from '@alterego/data';
-import { EvaluatorService, HeuristicScorer } from '../src/evaluation/index.js';
+import { EvaluatorService, HeuristicScorer } from '../src/evaluation/Index.js';
 import type { Message } from '@alterego/data';
 
 const MINUTE = 60_000;
@@ -135,3 +135,4 @@ describe('EvaluatorService', () => {
     expect(evaluator.composite(reports[0].metrics as never)).toBeGreaterThan(0);
   });
 });
+

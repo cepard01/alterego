@@ -12,7 +12,7 @@ import type {
   TimelineEvent,
 } from '@alterego/data';
 import type { EventBus } from '@alterego/events';
-import { DriftProposal, InterestDriftDetector, InterestBaseline } from './interest-drift.js';
+import { DriftProposal, InterestDriftDetector, InterestBaseline } from './InterestDrift.js';
 
 export interface EvolutionDataPort {
   identityProfiles: {
@@ -215,3 +215,4 @@ export class IdentityEvolutionService {
     });
   }
 }
+

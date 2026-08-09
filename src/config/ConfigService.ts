@@ -3,9 +3,9 @@
 // persists them in the data package); each applied override emits ConfigChanged.
 
 import { EventBus } from '@alterego/events';
-import { AppConfig, AppConfigSchema } from './config.schema.js';
-import { deepMerge, envToConfig, envToFeatureFlags, getPath, Json, setPath } from './merge.js';
-import { defaults } from './defaults.js';
+import { AppConfig, AppConfigSchema } from './ConfigSchema.js';
+import { deepMerge, envToConfig, envToFeatureFlags, getPath, Json, setPath } from './Merge.js';
+import { defaults } from './Defaults.js';
 
 export interface ConfigLoadOptions {
   /** Extra values that win over everything (e.g. persisted admin overrides). */
@@ -95,3 +95,4 @@ export class ConfigService {
     return this.config;
   }
 }
+

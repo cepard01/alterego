@@ -4,7 +4,7 @@
 import { AppConfig, ConfigService } from '@alterego/config';
 import { EventBus } from '@alterego/events';
 import { Logger } from '@alterego/observability';
-import { SchedulerService } from './scheduler.js';
+import { SchedulerService } from './Scheduler.js';
 
 export const IDLE_CHECK_JOB = 'conversation.idle-check';
 
@@ -67,3 +67,4 @@ export class IdleTimer {
     this.scheduler.unregister(IDLE_CHECK_JOB);
   }
 }
+

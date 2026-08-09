@@ -1,9 +1,9 @@
 import { InMemoryEventBus } from '@alterego/events';
 import { AppConfig } from '@alterego/config';
 import { describe, expect, it, vi } from 'vitest';
-import { LLMRouter } from '../src/llm/index.js';
-import { LLMResponse } from '../src/llm/types.js';
-import { ProviderAdapter } from '../src/llm/adapters/provider.js';
+import { LLMRouter } from '../src/llm/Index.js';
+import { LLMResponse } from '../src/llm/Types.js';
+import { ProviderAdapter } from '../src/llm/adapters/Provider.js';
 
 function makeConfig(overrides: Partial<AppConfig['llm']> = {}): AppConfig {
   return {
@@ -199,3 +199,5 @@ describe('LLMRouter', () => {
     expect(usedModels).toContain('model-vision');
   });
 });
+
+

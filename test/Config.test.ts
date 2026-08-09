@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 import { InMemoryEventBus } from '@alterego/events';
-import { ConfigService } from '../src/config/index.js';
+import { ConfigService } from '../src/config/Index.js';
 
 function makeBus() {
   return new InMemoryEventBus();
@@ -81,3 +81,4 @@ describe('ConfigService', () => {
     expect(config.getPath('does.not.exist')).toBeUndefined();
   });
 });
+

@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { ConfigService } from '@alterego/config';
 import { InMemoryEventBus } from '@alterego/events';
 import { DataService } from '@alterego/data';
-import { SocialGraphService } from '../src/social-graph/index.js';
+import { SocialGraphService } from '../src/social-graph/Index.js';
 
 function makeService() {
   const bus = new InMemoryEventBus();
@@ -84,3 +84,4 @@ describe('SocialGraphService', () => {
     expect(clusters[0].clusterLabel).toBe('amigos da faculdade');
   });
 });
+

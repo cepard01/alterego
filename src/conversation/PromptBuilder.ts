@@ -5,7 +5,7 @@
 // behavior-rules layer is derived from the action.
 
 import type { SimulatedAction, SimulatedActionType } from '@alterego/human-simulation';
-import type { ContextBundle } from './context-builder.js';
+import type { ContextBundle } from './ContextBuilder.js';
 
 export interface PromptInput {
   personalityName: string;
@@ -87,3 +87,4 @@ export class PromptBuilder {
     };
   }
 }
+

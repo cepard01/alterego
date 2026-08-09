@@ -2,8 +2,8 @@ import { describe, expect, it } from 'vitest';
 import { ConfigService } from '@alterego/config';
 import { InMemoryEventBus } from '@alterego/events';
 import { DataService } from '@alterego/data';
-import { FalseMemorySimulator, ThoughtGenerator, ThoughtVerifier } from '../src/thoughts/index.js';
-import type { LlmCompleter } from '../src/thoughts/index.js';
+import { FalseMemorySimulator, ThoughtGenerator, ThoughtVerifier } from '../src/thoughts/Index.js';
+import type { LlmCompleter } from '../src/thoughts/Index.js';
 
 function makeServices() {
   const bus = new InMemoryEventBus();
@@ -159,3 +159,4 @@ describe('FalseMemorySimulator', () => {
     expect(created!.content).not.toBe('Almoçamos juntos no dia 5 de junho');
   });
 });
+

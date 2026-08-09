@@ -8,7 +8,7 @@ import {
   messageLifecycleLatency,
   MetricsRegistry,
   ObservabilityService,
-} from '../src/observability/index.js';
+} from '../src/observability/Index.js';
 
 const bus = () => new InMemoryEventBus();
 
@@ -131,3 +131,4 @@ describe('ObservabilityService', () => {
     expect(status.detail).toBe('connection dropped');
   });
 });
+

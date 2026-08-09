@@ -3,7 +3,7 @@
 // unanswered questions only (long gap).
 
 import type { Message } from '@alterego/data';
-import type { FreshnessStrategy } from './freshness-scorer.js';
+import type { FreshnessStrategy } from './FreshnessScorer.js';
 
 export type ReconstructedContextType = 'raw' | 'summary' | 'summary_plus_questions';
 
@@ -73,3 +73,4 @@ export class ContextReconstructor {
     return `Resumo do período offline (${messages.length} mensagens): ${parts.join(' | ')}`;
   }
 }
+

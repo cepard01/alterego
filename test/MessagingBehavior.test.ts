@@ -2,8 +2,8 @@ import { describe, expect, it } from 'vitest';
 import { ConfigService } from '@alterego/config';
 import { InMemoryEventBus } from '@alterego/events';
 import { DataService } from '@alterego/data';
-import { ResponseExecutor, ResponsePlanner } from '../src/messaging-behavior/index.js';
-import type { PlanInput, Sender } from '../src/messaging-behavior/index.js';
+import { ResponseExecutor, ResponsePlanner } from '../src/messaging-behavior/Index.js';
+import type { PlanInput, Sender } from '../src/messaging-behavior/Index.js';
 import type { SimulatedAction } from '@alterego/human-simulation';
 
 const action: SimulatedAction = {
@@ -132,3 +132,4 @@ describe('ResponseExecutor', () => {
     expect(scheduled[0].runAt).toBe(reminder.triggerAt);
   });
 });
+

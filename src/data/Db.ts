@@ -4,9 +4,9 @@
 import { Pool, PoolClient } from 'pg';
 import { Redis } from 'ioredis';
 import { Logger } from '@alterego/observability';
-import { Db, DbMode, QueryResultLike, Tx } from './db.types.js';
-import { SqliteDb } from './db-sqlite.js';
-import { MikroOrmDbContext } from './mikro-db.js';
+import { Db, DbMode, QueryResultLike, Tx } from './DbTypes.js';
+import { SqliteDb } from './DbSqlite.js';
+import { MikroOrmDbContext } from './MikroDb.js';
 export { MikroOrmDbContext };
 
 /** Postgres-backed Db using a pg Pool. */
@@ -315,4 +315,5 @@ export function createMikroDb(sqlitePath = './alterego.db', logger?: Logger): Mi
 export function createRedis(url: string): Redis {
   return new Redis(url, { lazyConnect: false, maxRetriesPerRequest: 2 });
 }
+
 

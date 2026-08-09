@@ -2,8 +2,8 @@
 // Schema creation and EntityManager init happen on first query/transaction.
 
 import { MikroORM } from '@mikro-orm/sqlite';
-import { Db, QueryResultLike, Tx } from './db.types.js';
-import { createMikroOrm } from './mikro-orm.js';
+import { Db, QueryResultLike, Tx } from './DbTypes.js';
+import { createMikroOrm } from './MikroOrm.js';
 
 export class MikroOrmDbContext implements Db {
   private em: any = null;
@@ -83,3 +83,4 @@ function translate(sql: string, params: unknown[]): { sql: string; bind: unknown
 
   return { sql: out, bind };
 }
+

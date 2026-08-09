@@ -99,7 +99,7 @@ src/
 | Testing | Vitest (171 tests, 23 modules) |
 | LLM Providers | OpenAI, Anthropic, Google, Ollama, OpenRouter |
 | Transport | Baileys (WhatsApp), Cloud API |
-| Skills | agent-skills (addyosmani/agent-skills) |
+| Skills | Built-in skill registry (`src/skills/`) with domain-specific `SKILL.md` files |
 
 ---
 
@@ -168,7 +168,7 @@ npm test
 - [x] Multi-provider LLM router with circuit breaker
 - [x] Offline Recovery Engine
 - [x] 171 tests passing
-- [x] Agent Skills integration (addyosmani/agent-skills)
+- [x] Built-in skills registry with domain-specific `SKILL.md` files
 
 ---
 
@@ -178,20 +178,20 @@ npm test
 - `docs/architecture/v2-human-simulation.md` — Human Simulation Layer
 - `docs/architecture/v3-identity-continuity.md` — Identity & Offline Recovery
 - `AGENTS.md` — Instructions for AI coding agents working in this repo
-- `references/agent-skills/` — Production-grade engineering skills for AI coding agents
+- `src/skills/` — Built-in skill registry and domain-specific `SKILL.md` files
 
 ---
 
 ## Contributing
 
-This project follows the [Agent Skills](https://github.com/addyosmani/agent-skills) workflow:
+This project follows a spec-first workflow encoded in `src/skills/rules/`:
 
-1. **Spec** — Define the change before coding (`/spec`)
-2. **Plan** — Break into atomic tasks (`/plan`)
-3. **Build** — Implement incrementally (`/build`)
-4. **Test** — Prove it works (`/test`)
-5. **Review** — Quality gate before merge (`/review`)
-6. **Ship** — Deploy with confidence (`/ship`)
+1. **Spec** — Define the change before coding
+2. **Plan** — Break into atomic tasks
+3. **Build** — Implement incrementally
+4. **Test** — Prove it works
+5. **Review** — Quality gate before merge
+6. **Ship** — Deploy with confidence
 
 See `AGENTS.md` for repository-specific conventions and module boundaries.
 

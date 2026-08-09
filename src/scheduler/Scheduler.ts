@@ -4,7 +4,7 @@
 import { ConfigService, AppConfig } from '@alterego/config';
 import { EventBus } from '@alterego/events';
 import { Logger } from '@alterego/observability';
-import { ClaimedJob, JobContext, JobHandler, JobQueue, SchedulerStats } from './types.js';
+import { ClaimedJob, JobContext, JobHandler, JobQueue, SchedulerStats } from './Types.js';
 
 export interface SchedulerOptions {
   bus: EventBus;
@@ -122,3 +122,4 @@ export class SchedulerService {
     };
   }
 }
+

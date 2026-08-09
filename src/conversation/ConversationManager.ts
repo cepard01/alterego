@@ -3,7 +3,7 @@
 
 import type { EventBus, MessageReceivedPayload } from '@alterego/events';
 import type { Conversation, Message, Session } from '@alterego/data';
-import { ConversationStateManager } from './state-manager.js';
+import { ConversationStateManager } from './StateManager.js';
 
 export interface ConversationDataPort {
   conversations: {
@@ -92,3 +92,4 @@ export class ConversationManager {
     this.state.reset(conversationId);
   }
 }
+

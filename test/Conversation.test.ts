@@ -2,8 +2,8 @@ import { describe, expect, it } from 'vitest';
 import { ConfigService } from '@alterego/config';
 import { InMemoryEventBus } from '@alterego/events';
 import { DataService } from '@alterego/data';
-import { ConversationManager, ConversationPipeline, ContextBuilder, PromptBuilder } from '../src/conversation/index.js';
-import { ConversationStateManager } from '../src/conversation/index.js';
+import { ConversationManager, ConversationPipeline, ContextBuilder, PromptBuilder } from '../src/conversation/Index.js';
+import { ConversationStateManager } from '../src/conversation/Index.js';
 import type { SimulatedAction } from '@alterego/human-simulation';
 
 const action: SimulatedAction = {
@@ -227,3 +227,4 @@ describe('ConversationPipeline', () => {
     expect(result.text).toBeNull();
   });
 });
+

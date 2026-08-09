@@ -2,7 +2,7 @@
 // sequenced WhatsApp event plan (v2 §5, §10): bubble pacing, self-correction,
 // deferred answers.
 
-import { MessagePlan, PlanInput, PlannedMessage } from './types.js';
+import { MessagePlan, PlanInput, PlannedMessage } from './Types.js';
 
 const CORRECTION_GAP_MS = 2500;
 const MAX_BUBBLES = 3;

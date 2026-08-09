@@ -1,9 +1,9 @@
 // Repositories for v2 social-graph entities: SocialGraphNode, SocialGraphEdge,
 // SocialCluster.
 
-import { Db } from '../db.types.js';
-import { SocialCluster, SocialGraphEdge, SocialGraphNode } from '../types.js';
-import { newId, nowIso, parseJson, firstRow } from './base.js';
+import { Db } from '../DbTypes.js';
+import { SocialCluster, SocialGraphEdge, SocialGraphNode } from '../Types.js';
+import { newId, nowIso, parseJson, firstRow } from './Base.js';
 
 export class SocialGraphNodeRepository {
   constructor(private readonly db: Db) {}
@@ -132,3 +132,5 @@ export class SocialClusterRepository {
     }));
   }
 }
+
+

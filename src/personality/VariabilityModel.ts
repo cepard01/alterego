@@ -3,7 +3,7 @@
 // baseline; variance widens with fatigue/stress, and mood swings are rare,
 // time-boxed events that always revert.
 
-import { PersonalityProfile } from './profile.js';
+import { PersonalityProfile } from './Profile.js';
 
 export interface PsychologyInput {
   fatigue: number;
@@ -72,3 +72,4 @@ export class VariabilityModel {
     };
   }
 }
+

@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { InMemoryEventBus } from '@alterego/events';
 import { ConfigService } from '@alterego/config';
-import { DataService, MemoryDb, rankMemory } from '../src/data/index.js';
-import { runMigrations } from '../src/data/migrate.js';
+import { DataService, MemoryDb, rankMemory } from '../src/data/Index.js';
+import { runMigrations } from '../src/data/Migrate.js';
 
 function makeData(): { data: DataService; db: MemoryDb } {
   const bus = new InMemoryEventBus();
@@ -246,3 +246,5 @@ describe('runMigrations', () => {
     expect(records.length).toBeGreaterThanOrEqual(3);
   });
 });
+
+

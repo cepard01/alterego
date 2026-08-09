@@ -4,9 +4,9 @@
 import { Memory } from '@alterego/data';
 import { EventBus } from '@alterego/events';
 import { Logger } from '@alterego/observability';
-import { ConversationMemoryStore, InMemoryConversationMemory } from './conversation-memory.js';
-import { detectContradiction } from './contradiction.js';
-import { WorkingMemory } from './working-memory.js';
+import { ConversationMemoryStore, InMemoryConversationMemory } from './ConversationMemory.js';
+import { detectContradiction } from './Contradiction.js';
+import { WorkingMemory } from './WorkingMemory.js';
 
 export interface RememberInput {
   userId: string;
@@ -128,3 +128,4 @@ export class MemoryManager {
     await this.data.memory.deleteByUser(userId);
   }
 }
+

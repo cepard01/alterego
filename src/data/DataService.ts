@@ -3,47 +3,47 @@
 
 import { ConfigService } from '@alterego/config';
 import { Logger } from '@alterego/observability';
-import { createDb } from './db.js';
-import { Db, DbMode } from './db.types.js';
-import { UserRepository, RelationshipRepository, InteractionHistoryRepository } from './repositories/users.repo.js';
+import { createDb } from './Db.js';
+import { Db, DbMode } from './DbTypes.js';
+import { UserRepository, RelationshipRepository, InteractionHistoryRepository } from './repositories/UsersRepo.js';
 import {
   ConversationRepository,
   MediaRepository,
   MessageRepository,
   SessionRepository,
-} from './repositories/conversations.repo.js';
-import { KnowledgeRepository, MemoryRepository } from './repositories/memory.repo.js';
+} from './repositories/ConversationsRepo.js';
+import { KnowledgeRepository, MemoryRepository } from './repositories/MemoryRepo.js';
 import {
   BehaviorProfileRepository,
   PersonalityRepository,
   ReminderRepository,
   StickerRepository,
   TaskQueueRepository,
-} from './repositories/behavior.repo.js';
+} from './repositories/BehaviorRepo.js';
 import {
   EvaluationReportRepository,
   PsychologyStateRepository,
   ThoughtRepository,
   WorldStateRepository,
-} from './repositories/simulation.repo.js';
+} from './repositories/SimulationRepo.js';
 import {
   SocialClusterRepository,
   SocialGraphEdgeRepository,
   SocialGraphNodeRepository,
-} from './repositories/social.repo.js';
+} from './repositories/SocialRepo.js';
 import {
   CalendarEntryRepository,
   GoalRepository,
   IdentityProfileRepository,
   InventoryItemRepository,
   TimelineEventRepository,
-} from './repositories/identity.repo.js';
+} from './repositories/IdentityRepo.js';
 import {
   IdentityEvolutionProposalRepository,
   MemoryContradictionRepository,
   RecoveryPlanRepository,
-} from './repositories/v3.repo.js';
-import { SettingsRepository } from './repositories/settings.repo.js';
+} from './repositories/V3Repo.js';
+import { SettingsRepository } from './repositories/SettingsRepo.js';
 
 export interface DataServiceOptions {
   /** Storage backend. Defaults to the config's data.mode (sqlite). */
@@ -128,3 +128,4 @@ export class DataService {
     await this.db.close();
   }
 }
+

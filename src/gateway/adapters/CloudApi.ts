@@ -2,7 +2,7 @@
 // https://developers.facebook.com/docs/whatsapp/cloud-api
 
 import { MediaKind } from '@alterego/events';
-import { InboundMessage, OutboundMessage, PresenceState, SendResult, TransportAdapter } from '../types.js';
+import { InboundMessage, OutboundMessage, PresenceState, SendResult, TransportAdapter } from '../Types.js';
 
 interface CloudApiConfig {
   phoneNumberId: string;
@@ -118,3 +118,4 @@ export class CloudApiAdapter implements TransportAdapter {
     };
   }
 }
+

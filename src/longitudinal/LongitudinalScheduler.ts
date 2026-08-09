@@ -3,7 +3,7 @@
 // anything) is worth proposing.
 
 import type { SchedulerService } from '@alterego/scheduler';
-import { LONGITUDINAL_EVOLUTION_JOB } from './identity-evolution.js';
+import { LONGITUDINAL_EVOLUTION_JOB } from './IdentityEvolution.js';
 
 export interface SchedulerInput {
   runPass: () => Promise<unknown>;
@@ -21,3 +21,4 @@ export class LongitudinalScheduler {
     this.scheduler.scheduleRecurring(LONGITUDINAL_EVOLUTION_JOB, intervalMs);
   }
 }
+

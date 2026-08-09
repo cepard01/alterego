@@ -1,9 +1,9 @@
 // Repositories for v3 continuity entities: MemoryContradiction, RecoveryPlan,
 // IdentityEvolutionProposal.
 
-import { Db } from '../db.types.js';
-import { IdentityEvolutionProposal, MemoryContradiction, RecoveryPlan } from '../types.js';
-import { newId, nowIso, parseJson, firstRow } from './base.js';
+import { Db } from '../DbTypes.js';
+import { IdentityEvolutionProposal, MemoryContradiction, RecoveryPlan } from '../Types.js';
+import { newId, nowIso, parseJson, firstRow } from './Base.js';
 
 export class MemoryContradictionRepository {
   constructor(private readonly db: Db) {}
@@ -161,3 +161,5 @@ export class IdentityEvolutionProposalRepository {
     };
   }
 }
+
+

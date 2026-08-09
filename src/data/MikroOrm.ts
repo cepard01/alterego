@@ -3,7 +3,7 @@
 
 import { defineConfig, MikroORM } from '@mikro-orm/sqlite';
 import { EntityManager } from '@mikro-orm/core';
-import { Entities } from './entities/index.js';
+import { Entities } from './entities/Index.js';
 
 export interface MikroOrmConfig {
   /** SQLite file path or ':memory:' for tests. */
@@ -38,3 +38,4 @@ export async function createMikroOrm(config: MikroOrmConfig): Promise<{ orm: Mik
 
   return { orm, em: orm.em };
 }
+

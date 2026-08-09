@@ -3,7 +3,7 @@
 
 export {
   EVENT_TYPES,
-} from './events.js';
+} from './Events.js';
 export type {
   EventPayloadMap,
   AgentBootedPayload,
@@ -39,7 +39,8 @@ export type {
   ThoughtVerifiedPayload,
   TokenUsage,
   WorldStateUpdatedPayload,
-} from './events.js';
+} from './Events.js';
 
-export { InMemoryEventBus } from './event-bus.js';
-export type { AppEvent, EventBus, EventBusOptions, EventHandler, PublishOptions, Unsubscribe } from './event-bus.js';
+export { InMemoryEventBus } from './EventBus.js';
+export type { AppEvent, EventBus, EventBusOptions, EventHandler, PublishOptions, Unsubscribe } from './EventBus.js';
+

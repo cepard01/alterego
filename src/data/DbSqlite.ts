@@ -7,8 +7,8 @@
 
 import { DatabaseSync } from 'node:sqlite';
 import { Logger } from '@alterego/observability';
-import { Db, QueryResultLike, Tx } from './db.types.js';
-import { createSchema } from './schema-sqlite.js';
+import { Db, QueryResultLike, Tx } from './DbTypes.js';
+import { createSchema } from './SchemaSqlite.js';
 
 const CAST_RE = /^::(jsonb|vector|text|int|float|bool|bigint)/i;
 
@@ -121,3 +121,4 @@ export class SqliteDb implements Db {
     this.db.close();
   }
 }
+
