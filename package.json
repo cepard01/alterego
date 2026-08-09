@@ -12,7 +12,12 @@
     "dev:memory": "cross-env ALTEREGO_MEMORY_MODE=1 tsx src/runtime/main.ts"
   },
   "dependencies": {
+    "@mikro-orm/core": "^7.1.11",
+    "@mikro-orm/postgresql": "^7.1.11",
+    "@mikro-orm/sqlite": "^7.1.11",
+    "better-sqlite3": "^13.0.3",
     "ioredis": "^5.4.0",
+    "mikro-orm": "^7.1.11",
     "pg": "^8.12.0",
     "zod": "^3.23.0"
   },

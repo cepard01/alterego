@@ -6,6 +6,8 @@ import { Redis } from 'ioredis';
 import { Logger } from '@alterego/observability';
 import { Db, DbMode, QueryResultLike, Tx } from './db.types.js';
 import { SqliteDb } from './db-sqlite.js';
+import { MikroOrmDbContext } from './mikro-db.js';
+export { MikroOrmDbContext };
 
 /** Postgres-backed Db using a pg Pool. */
 export class PostgresDb implements Db {
@@ -300,8 +302,13 @@ for (const assignment of setMatch[1].split(',')) {
 
 /** Creates a Db from a connection string and mode: Postgres, in-memory (tests) or SQLite (local mode). */
 export function createDb(connectionString: string, logger?: Logger, mode: DbMode = 'postgres', sqlitePath = './alterego.db'): Db {
-  if (mode === 'sqlite') return new SqliteDb(sqlitePath, logger);
+  if (mode === 'sqlite') return new MikroOrmDbContext(sqlitePath, logger);
   return mode === 'memory' ? new MemoryDb(logger) : new PostgresDb(connectionString, logger);
+}
+
+/** Async factory for the MikroORM-backed SQLite Db. Returns the same lazy MikroOrmDbContext. */
+export function createMikroDb(sqlitePath = './alterego.db', logger?: Logger): MikroOrmDbContext {
+  return new MikroOrmDbContext(sqlitePath, logger);
 }
 
 /** Redis connection shared by packages that need low-latency state (conversation memory). */
