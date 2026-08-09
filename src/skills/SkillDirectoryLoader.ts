@@ -38,15 +38,20 @@ export async function loadModuleLocalSkills(root = process.cwd()): Promise<Skill
   const entries = await readdir(src, { withFileTypes: true, recursive: false });
   const skills: Skill[] = [];
 
-  for (const entry of entries) {
-    if (!entry.isDirectory()) continue;
+  const reads = entries.map(async (entry) => {
+    if (!entry.isDirectory()) return null;
     const skillFile = join(src, entry.name, 'skills', 'SKILL.md');
     try {
       const source = await readFile(skillFile, 'utf-8');
-      skills.push(parseSkill(source, skillFile));
+      return parseSkill(source, skillFile);
     } catch {
-      // module has no local skill
+      return null;
     }
+  });
+
+  const results = await Promise.all(reads);
+  for (const skill of results) {
+    if (skill) skills.push(skill);
   }
 
   return skills;
